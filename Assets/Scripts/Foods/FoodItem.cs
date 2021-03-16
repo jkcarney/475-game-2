@@ -15,6 +15,11 @@ public class FoodItem : MonoBehaviour
         GetComponent<MeshRenderer>().material = foodMaterial;
         GetComponent<BoxCollider>().material = foodPhysics;
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("I, " + this.gameObject.name + " am colliding with " + collision.gameObject.name);
+    }
     
     public enum Food 
     {
