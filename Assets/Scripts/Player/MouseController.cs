@@ -11,8 +11,6 @@ public class MouseController : MonoBehaviour
 
     public Rigidbody plateRB;
 
-    public float cursorSpeed;
-
     void Start()
     {
         // When the game begins we want the cursor to vanish
