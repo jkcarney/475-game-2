@@ -5,6 +5,13 @@ using UnityEngine;
 public class MouseController : MonoBehaviour
 {
     public float plateDistance = 10f;
+    public float clampX;
+    public float clampYMin;
+    public float clampYMax;
+
+    public Rigidbody plateRB;
+
+    public float cursorSpeed;
 
     void Start()
     {
@@ -16,8 +23,16 @@ public class MouseController : MonoBehaviour
     {
         Vector3 mousePos = Input.mousePosition;
         //Offset plate by an adjustable distance so it's far from the camera.
+        //Keep plate within clampX and Y
         mousePos.z += plateDistance;
-        //Set plate to wherever the mouse is.
-        this.transform.position = Camera.main.ScreenToWorldPoint(mousePos);
+        //Get the world coordinates of the mouse position
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePos);
+        mouseWorldPosition = new Vector3(
+            Mathf.Clamp(mouseWorldPosition.x, -clampX, clampX),
+            Mathf.Clamp(mouseWorldPosition.y, clampYMin, clampYMax),
+            mouseWorldPosition.z
+        );
+        //Use movePosition because otherwise physics will not be enacted on other objects
+        plateRB.MovePosition(mouseWorldPosition);
     }
 }
