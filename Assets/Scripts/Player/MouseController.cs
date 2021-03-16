@@ -17,7 +17,7 @@ public class MouseController : MonoBehaviour
         Cursor.visible = false;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector3 mousePos = Input.mousePosition;
         //Offset plate by an adjustable distance so it's far from the camera.

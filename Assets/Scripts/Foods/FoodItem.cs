@@ -8,6 +8,8 @@ public class FoodItem : MonoBehaviour
     public PhysicMaterial foodPhysics;
     public Material foodMaterial;
 
+    public bool isGarbage = false;
+
     void Start()
     {
         GetComponent<MeshRenderer>().material = foodMaterial;
