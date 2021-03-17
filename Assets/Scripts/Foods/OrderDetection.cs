@@ -25,9 +25,15 @@ public class OrderDetection : MonoBehaviour
 
     void FixedUpdate()
     {
-        foreach(Collider c in triggerList)
+        // Null check
+        if(triggerList.Count > 0)
         {
-            c.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, stickiness, 0.0f), ForceMode.Acceleration);
+            // If an object is on the pan, then apply a downwards force so upwards movement does not send it
+            // flying as easily
+            foreach(Collider c in triggerList)
+            {
+                c.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, stickiness, 0.0f), ForceMode.Acceleration);
+            }
         }
     }
 
@@ -71,5 +77,6 @@ public class OrderDetection : MonoBehaviour
     {
         foreach(Collider c in triggerList)
             Destroy(c.gameObject);
+        triggerList.Clear();
     }
 }
