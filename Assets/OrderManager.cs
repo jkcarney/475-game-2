@@ -37,11 +37,11 @@ public class OrderManager : MonoBehaviour
 
     void InitializeOrder()
     {
-        // Clear out the current order stack just in case
+        // Clear out the current order list just in case
         currentOrder.Clear();
         // All orders will start with a bottom bun
         currentOrder.Add(Enum.GetName(typeof(FoodItem.Food), 1));
-        // Grab random ingreidients and add to stack
+        // Grab random ingreidients and add to list
         for(int i = 0; i < difficulty; ++i)
         {
             int index = UnityEngine.Random.Range(2, ingredientCount);
@@ -56,5 +56,10 @@ public class OrderManager : MonoBehaviour
     {
         foreach(string s in currentOrder)
             Debug.Log(s);
+    }
+
+    public List<string> GetCurrentOrder()
+    {
+        return currentOrder;
     }
 }
