@@ -15,7 +15,6 @@ public class FoodItem : MonoBehaviour
         GetComponent<MeshRenderer>().material = foodMaterial;
         GetComponent<BoxCollider>().material = foodPhysics;
     }
-
     public enum Food 
     {
         TopBun,

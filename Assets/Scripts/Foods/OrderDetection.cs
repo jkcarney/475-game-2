@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class OrderDetection : MonoBehaviour
 {
+    [Range(-150.0f, 0.0f)]
+    public float stickiness;
+    
     private OrderManager om;
 
     private List<string> isOnPan;
@@ -18,6 +21,14 @@ public class OrderDetection : MonoBehaviour
         om = GameObject.Find("OrderManager").GetComponent<OrderManager>();
         isOnPan = new List<string>();
         orderCollider = GetComponent<BoxCollider>();
+    }
+
+    void FixedUpdate()
+    {
+        foreach(Collider c in triggerList)
+        {
+            c.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, stickiness, 0.0f), ForceMode.Acceleration);
+        }
     }
 
     // When the collider detects a new object, add it to the "isOnPan" list
