@@ -115,14 +115,7 @@ public class OrderManager : MonoBehaviour
             }
         }
         // This iterates the pan from the TOP DOWN, looking for items in the exact order.
-        // This subtracts from bad and adds to good if the item matches, and nothing otherwise
-        //
-        // This part is a little hard to explain, but bascially we wanna reward players if the order
-        // is still decent from the top down and not solely from the bottom up. Otherwise if the top
-        // half is all correct but the bottom ingredient is wrong, the whole thing is wrong.
-        //
-        // The algorithm doesnt have to perfectly account for whats right and wrong anyways, the score should
-        // help abstract that 
+        // This adds to good if the item matches, and nothing otherwise
         List<string> reversedPan = new List<string>(pan);
         List<string> reversedOrder = new List<string>(currentOrder);
         reversedPan.Reverse();
