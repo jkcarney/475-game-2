@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spawning : MonoBehaviour
 {
 
+    //introduce all ingredients
     public GameObject TopBun;
     public GameObject BottomBun;
     public GameObject Patty;
@@ -12,19 +13,17 @@ public class Spawning : MonoBehaviour
     public GameObject Cheese;
     private GameObject food;
 
-    public float spawnRate = 1f;
+    //variables for spawning food
+    public float spawnRate = 1f; //change the speed that food spawns
     private float lastSpawned;
 
-    void Start()
-    {
-
-    }
-
+    //spawns food at Random X between -10 and 10, 30 Y, and -25 Z
     void Spawn(GameObject prefab)
     {
         Instantiate(prefab, new Vector3(Random.Range(-10.0f, 10.0f), 30.0f, -25.0f), Quaternion.identity);
     }
     
+    //destroys food on collision with the DestroyPlane
     void OnTriggerEnter(Collider other)
     {
         Destroy(other.gameObject);
@@ -33,6 +32,7 @@ public class Spawning : MonoBehaviour
 
     void Update()
     {
+        //randomly selecting which ingredient to spawn
         var randomNumber = Random.Range(1, 6);
         if (randomNumber == 1) food = TopBun;
         else if (randomNumber == 2) food = BottomBun;
@@ -40,8 +40,8 @@ public class Spawning : MonoBehaviour
         //else if (randomNumber == 4) food = Lettuce;
         else if (randomNumber == 5) food = Cheese;
 
-        //Invoke("DeactivateText", 10.0f); 
-        //Invoke("Spawn(food)", 1);
+
+        //process for creating the delay in spawning the food
         if (Time.time > lastSpawned + spawnRate)
         {
             Spawn(food);
