@@ -85,8 +85,7 @@ public class OrderManager : MonoBehaviour
     // Second int is amount of bad items (out of order)
     public (int, int) CompareOrderToPan(List<string> pan)
     {
-        int goodItems = 0;
-        int badItems = 0;
+        int goodItems = 0, badItems = 0, goodItemsReversed = 0, badItemsReversed = 0;
 
         // If this is true, then there are items that are going to be incorrect regardless of comparison
         // We can add the absolute difference to the badItems count.
@@ -94,12 +93,15 @@ public class OrderManager : MonoBehaviour
         {
             int incorrectCount = Mathf.Abs(pan.Count - currentOrder.Count);
             badItems += incorrectCount;
+            badItemsReversed += incorrectCount;
         }
+
+        // This section iterates the pan from the BOTTOM UP, looking for items in the exact order
 
         List<string>.Enumerator panIter = pan.GetEnumerator();
         List<string>.Enumerator orderIter = currentOrder.GetEnumerator();
         
-        // This iterates the pan from the BOTTOM UP, looking for items in the exact order
+        
         while(panIter.MoveNext() && orderIter.MoveNext())
         {
             string panItem = panIter.Current;
@@ -114,8 +116,9 @@ public class OrderManager : MonoBehaviour
                 ++badItems;
             }
         }
-        // This iterates the pan from the TOP DOWN, looking for items in the exact order.
-        // This adds to good if the item matches, and nothing otherwise
+
+        // This section iterates the pan from the TOP DOWN, looking for items in the exact order.
+   
         List<string> reversedPan = new List<string>(pan);
         List<string> reversedOrder = new List<string>(currentOrder);
         reversedPan.Reverse();
@@ -131,11 +134,21 @@ public class OrderManager : MonoBehaviour
 
             if(panItem == orderItem)
             {
-                ++goodItems;
+                ++goodItemsReversed;
+            }
+            else
+            {
+                ++badItemsReversed;
             }
         }
 
-        Debug.Log("GOOD: " + goodItems + " BAD: " + badItems);
-        return (goodItems, badItems);
+        // Takes the max of the good and the minumum of the bad items from the reversed and
+        // normal lists to get the proper amount of good and bad items.
+        int returnedGood = Mathf.Max(goodItems, goodItemsReversed);
+        int returnedBad = Mathf.Min(badItems, badItemsReversed);
+
+        Debug.Log("FINAL GOOD: " + returnedGood + " FINAL BAD: " + returnedBad);
+
+        return (returnedGood, returnedBad);
     }
 }
