@@ -6,6 +6,9 @@ public class ScoreManager : MonoBehaviour
 {
     public int currentScore;
 
+    [Range(1, 100)]
+    public int goodItemsFactor;
+
     void Start()
     {
         currentScore = 0;
@@ -15,6 +18,10 @@ public class ScoreManager : MonoBehaviour
     // "badItems" is defined as the amount of bad food items in the given burger
     public void AddScore(int correctItems, int badItems)
     {
-        currentScore += correctItems;
+        int calculatedScore = 0;
+        calculatedScore = ((correctItems * goodItemsFactor) + (correctItems + badItems)) / (1 + badItems); 
+
+        currentScore += calculatedScore;
+        Debug.Log("New Score: " + currentScore);
     }
 }

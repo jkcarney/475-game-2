@@ -78,5 +78,6 @@ public class OrderDetection : MonoBehaviour
         foreach(Collider c in triggerList)
             Destroy(c.gameObject);
         triggerList.Clear();
+        isOnPan.Clear();
     }
 }
