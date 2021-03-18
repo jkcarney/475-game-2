@@ -25,6 +25,7 @@ public class FadingText : MonoBehaviour
 
     IEnumerator FadeTo(float value, float time)
     {
+        // Fade text over "time"
         float alpha = text.color.a;
         for(float t = 0.0f; t < 1.0f; t += Time.deltaTime/time)
         {

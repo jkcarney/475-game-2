@@ -33,19 +33,23 @@ public class ScoreManager : MonoBehaviour
 
     private void DisplayAddedScore(int score, int good, int bad)
     {
+        // Determine spawn location for text and instantiate
         Vector3 spawnLocation = GameObject.Find("PlateHand").transform.position;
         spawnLocation = new Vector3(spawnLocation.x, spawnLocation.y, spawnLocation.z);
-        
         GameObject text = Instantiate(textPopup, spawnLocation, Quaternion.identity);
-        
-        text.GetComponent<ParticleSystem>().Emit((int)(score/2));
 
+        // Emit particle relative to amount of points earned, clamp it so not too many are emitted
+        text.GetComponent<ParticleSystem>().Emit(Mathf.Clamp((int)(score/2), 0, 200));
+
+        // Figure out which audio clip to play based on the score and how many bad items are there
         text.GetComponent<AudioSource>().clip = DetermineSoundToPlay(bad, score);
         text.GetComponent<AudioSource>().Play();
 
+        // Determine color of text based on amount of bad items
         float redValue = 0.0f;
         float greenValue = 1.0f;
         TextMesh mesh = text.GetComponent<TextMesh>();
+        // Each bad item increases the red by a factor of .25 and decreased green by a factor of .10
         for(int i = 0; i < bad; ++i)
         {
             redValue += 0.25f;
@@ -53,6 +57,7 @@ public class ScoreManager : MonoBehaviour
             mesh.color = new Color(redValue, greenValue, mesh.color.b, 1.0f);
         }
 
+        // Append the text with the score
         mesh.text = "+" + score.ToString();
     }
 
