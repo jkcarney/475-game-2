@@ -21,6 +21,8 @@ public class OrderManager : MonoBehaviour
 
     private List<string> currentOrder;
 
+    private float lastTimeOrderChecked;
+
     void Start()
     {
         orderDetector = GameObject.Find("OrderDetector").GetComponent<OrderDetection>();
@@ -41,7 +43,7 @@ public class OrderManager : MonoBehaviour
         }
 
         // Order comparison
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && Time.time > lastTimeOrderChecked + 1.0f)
         {
             (int, int) orderCorrectness = CompareOrderToPan(orderDetector.GetWhatsOnPan());
             // Item1 = good items
@@ -49,6 +51,7 @@ public class OrderManager : MonoBehaviour
             scoreManager.AddScore(orderCorrectness.Item1, orderCorrectness.Item2);
             orderDetector.RemoveAllPanItems();
             currentOrderExists = false;
+            lastTimeOrderChecked = Time.time;
         }
     }
 
