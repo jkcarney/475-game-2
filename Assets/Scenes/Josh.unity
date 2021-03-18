@@ -570,6 +570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57c815690a1e2584e8008e76632a801f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stickiness: -50
 --- !u!65 &1013236969
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -707,6 +708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentScore: 0
+  goodItemsFactor: 100
 --- !u!4 &1696601357
 Transform:
   m_ObjectHideFlags: 0
@@ -945,6 +947,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2112299293830636565, guid: 66130eb97b6967746a8e6b9012bea9cf,
+        type: 3}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112299293830636565, guid: 66130eb97b6967746a8e6b9012bea9cf,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2112299293830636565, guid: 66130eb97b6967746a8e6b9012bea9cf,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2112299293830636650, guid: 66130eb97b6967746a8e6b9012bea9cf,
         type: 3}
       propertyPath: m_Name
@@ -959,6 +976,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4242331724450811955, guid: 4bad97d2dc62ef84c8e495dde6f470c5,
+        type: 3}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242331724450811955, guid: 4bad97d2dc62ef84c8e495dde6f470c5,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242331724450811955, guid: 4bad97d2dc62ef84c8e495dde6f470c5,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4242331724450811958, guid: 4bad97d2dc62ef84c8e495dde6f470c5,
         type: 3}
       propertyPath: m_RootOrder
@@ -1028,6 +1060,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6057715238134531899, guid: 955957fe271d2704ca09edb4606e96e9,
+        type: 3}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6057715238134531899, guid: 955957fe271d2704ca09edb4606e96e9,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 6057715238134531899, guid: 955957fe271d2704ca09edb4606e96e9,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6057715238134531902, guid: 955957fe271d2704ca09edb4606e96e9,
         type: 3}
       propertyPath: m_RootOrder
@@ -1102,6 +1149,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: TopBun
       objectReference: {fileID: 0}
+    - target: {fileID: 914241874386039898, guid: 70f6d4ab48f02254991c8b29010bb6b8,
+        type: 3}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 914241874386039898, guid: 70f6d4ab48f02254991c8b29010bb6b8,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 914241874386039898, guid: 70f6d4ab48f02254991c8b29010bb6b8,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 914241874386039903, guid: 70f6d4ab48f02254991c8b29010bb6b8,
         type: 3}
       propertyPath: m_RootOrder
@@ -1115,7 +1177,7 @@ PrefabInstance:
     - target: {fileID: 914241874386039903, guid: 70f6d4ab48f02254991c8b29010bb6b8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 24.68
+      value: 26.07
       objectReference: {fileID: 0}
     - target: {fileID: 914241874386039903, guid: 70f6d4ab48f02254991c8b29010bb6b8,
         type: 3}
