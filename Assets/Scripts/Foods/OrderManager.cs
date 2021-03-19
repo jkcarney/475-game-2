@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OrderManager : MonoBehaviour
 { 
@@ -22,7 +23,7 @@ public class OrderManager : MonoBehaviour
     private List<string> currentOrder;
 
     private float lastTimeOrderChecked;
-
+    Text PrintOrder;
     void Start()
     {
         orderDetector = GameObject.Find("OrderDetector").GetComponent<OrderDetection>();
@@ -31,6 +32,7 @@ public class OrderManager : MonoBehaviour
         ingredientCount = ingredients.Length;
         currentOrderExists = false;
         currentOrder = new List<string>();
+        PrintOrder = GameObject.Find("PrintOrder").GetComponent<Text>();
     } 
 
     void Update()
@@ -41,6 +43,13 @@ public class OrderManager : MonoBehaviour
             InitializeOrder();
             LogCurrentOrder();
         }
+        
+        PrintOrder.GetComponent<Text>().text = ""; //Clear the text
+        string result = "Order: ";
+        foreach (string item in currentOrder){ //Add each item to the text
+            result += item + " ";
+        }
+        PrintOrder.GetComponent<Text>().text = result;
 
         // Order comparison
         if(Input.GetMouseButtonDown(0) && Time.time > lastTimeOrderChecked + 1.0f)
@@ -53,15 +62,18 @@ public class OrderManager : MonoBehaviour
             currentOrderExists = false;
             lastTimeOrderChecked = Time.time;
         }
+    
     }
 
+    //print this to screen..all items are added to a list so print the list
+    //items stored in current order
     void InitializeOrder()
     {
         // Clear out the current order list
         currentOrder.Clear();
         // All orders will start with a bottom bun
         currentOrder.Add(Enum.GetName(typeof(FoodItem.Food), 1));
-        // Grab random ingreidients and add to list
+        // Grab random ingredients and add to list
         for(int i = 0; i < difficulty; ++i)
         {
             int index = UnityEngine.Random.Range(2, ingredientCount);
