@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OrderManager : MonoBehaviour
 { 
@@ -21,6 +22,8 @@ public class OrderManager : MonoBehaviour
 
     private List<string> currentOrder;
 
+    Text printOrder;
+
     void Start()
     {
         orderDetector = GameObject.Find("OrderDetector").GetComponent<OrderDetection>();
@@ -29,6 +32,7 @@ public class OrderManager : MonoBehaviour
         ingredientCount = ingredients.Length;
         currentOrderExists = false;
         currentOrder = new List<string>();
+        printOrder = GameObject.Find("printOrder").GetComponent<Text>();
     } 
 
     void Update()
@@ -38,6 +42,11 @@ public class OrderManager : MonoBehaviour
         {
             InitializeOrder();
             LogCurrentOrder();
+        }
+        
+        printOrder.GetComponent<Text>().text = ""; //Clear the text
+        foreach (string item in currentOrder){ //Add each item to the text
+            printOrder.GetComponent<Text>().text += item + ",\n";
         }
 
         // Order comparison
@@ -50,15 +59,18 @@ public class OrderManager : MonoBehaviour
             orderDetector.RemoveAllPanItems();
             currentOrderExists = false;
         }
+    
     }
 
+    //print this to screen..all items are added to a list so print the list
+    //items stored in current order
     void InitializeOrder()
     {
         // Clear out the current order list
         currentOrder.Clear();
         // All orders will start with a bottom bun
         currentOrder.Add(Enum.GetName(typeof(FoodItem.Food), 1));
-        // Grab random ingreidients and add to list
+        // Grab random ingredients and add to list
         for(int i = 0; i < difficulty; ++i)
         {
             int index = UnityEngine.Random.Range(2, ingredientCount);
