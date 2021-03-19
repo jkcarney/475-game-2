@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6057715238134531898}
   - component: {fileID: 6057715238134531899}
   m_Layer: 0
-  m_Name: Cheese
+  m_Name: Lettuce
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 6057715238134531908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.211, y: 21.286161, z: -25.694}
-  m_LocalScale: {x: 1.7, y: 0.07, z: 1.7}
+  m_LocalScale: {x: 1.7, y: 0.09, z: 1.7}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b6b1bcec55690354ca9c616c568dc808, type: 2}
+  - {fileID: 2100000, guid: 97f7cc97c672e0f4780241faa3b3d245, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,9 +94,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9854cf15a81e86d44a417afdc3f61000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodName: 4
+  foodName: 3
   foodPhysics: {fileID: 13400000, guid: 3463fc919e61d014d916e0e85bad2349, type: 2}
-  foodMaterial: {fileID: 2100000, guid: b6b1bcec55690354ca9c616c568dc808, type: 2}
+  foodMaterial: {fileID: 2100000, guid: 97f7cc97c672e0f4780241faa3b3d245, type: 2}
   isGarbage: 0
 --- !u!65 &6057715238134531898
 BoxCollider:

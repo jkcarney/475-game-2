@@ -22,8 +22,8 @@ public class OrderManager : MonoBehaviour
 
     private List<string> currentOrder;
 
-    Text printOrder;
-
+    private float lastTimeOrderChecked;
+    Text PrintOrder;
     void Start()
     {
         orderDetector = GameObject.Find("OrderDetector").GetComponent<OrderDetection>();
@@ -32,7 +32,7 @@ public class OrderManager : MonoBehaviour
         ingredientCount = ingredients.Length;
         currentOrderExists = false;
         currentOrder = new List<string>();
-        printOrder = GameObject.Find("printOrder").GetComponent<Text>();
+        PrintOrder = GameObject.Find("PrintOrder").GetComponent<Text>();
     } 
 
     void Update()
@@ -44,13 +44,15 @@ public class OrderManager : MonoBehaviour
             LogCurrentOrder();
         }
         
-        printOrder.GetComponent<Text>().text = ""; //Clear the text
+        PrintOrder.GetComponent<Text>().text = ""; //Clear the text
+        string result = "Order: ";
         foreach (string item in currentOrder){ //Add each item to the text
-            printOrder.GetComponent<Text>().text += item + ",\n";
+            result += item + " ";
         }
+        PrintOrder.GetComponent<Text>().text = result;
 
         // Order comparison
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && Time.time > lastTimeOrderChecked + 1.0f)
         {
             (int, int) orderCorrectness = CompareOrderToPan(orderDetector.GetWhatsOnPan());
             // Item1 = good items
@@ -58,6 +60,7 @@ public class OrderManager : MonoBehaviour
             scoreManager.AddScore(orderCorrectness.Item1, orderCorrectness.Item2);
             orderDetector.RemoveAllPanItems();
             currentOrderExists = false;
+            lastTimeOrderChecked = Time.time;
         }
     
     }
