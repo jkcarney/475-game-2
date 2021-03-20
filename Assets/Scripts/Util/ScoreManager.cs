@@ -39,7 +39,7 @@ public class ScoreManager : MonoBehaviour
         GameObject text = Instantiate(textPopup, spawnLocation, Quaternion.identity);
 
         // Emit particle relative to amount of points earned, clamp it so not too many are emitted
-        text.GetComponent<ParticleSystem>().Emit(Mathf.Clamp((int)(score/2), 0, 200));
+        text.GetComponent<ParticleSystem>().Emit(Mathf.Clamp((good * 20), 0, 200));
 
         // Figure out which audio clip to play based on the score and how many bad items are there
         text.GetComponent<AudioSource>().clip = DetermineSoundToPlay(bad, score);
