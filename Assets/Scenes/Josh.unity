@@ -2054,7 +2054,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1729546961
 GameObject:
@@ -2294,6 +2294,7 @@ GameObject:
   - component: {fileID: 1968491265}
   - component: {fileID: 1968491268}
   - component: {fileID: 1968491269}
+  - component: {fileID: 1968491270}
   m_Layer: 0
   m_Name: PlateHand
   m_TagString: Untagged
@@ -2315,7 +2316,7 @@ Transform:
   - {fileID: 1630905091}
   - {fileID: 1013236967}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!65 &1968491265
 BoxCollider:
@@ -2410,6 +2411,19 @@ MonoBehaviour:
   clampYMin: 6
   clampYMax: 11
   plateRB: {fileID: 1968491268}
+--- !u!114 &1968491270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968491263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126bcbd5b3e1c7d458f678774dd02d92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timesClicked: 0
 --- !u!1 &2028702381
 GameObject:
   m_ObjectHideFlags: 0
@@ -2507,7 +2521,7 @@ PrefabInstance:
     - target: {fileID: 2112299293830636560, guid: 66130eb97b6967746a8e6b9012bea9cf,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2112299293830636560, guid: 66130eb97b6967746a8e6b9012bea9cf,
         type: 3}
@@ -2779,7 +2793,7 @@ PrefabInstance:
     - target: {fileID: 914241874386039903, guid: 70f6d4ab48f02254991c8b29010bb6b8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 914241874386039903, guid: 70f6d4ab48f02254991c8b29010bb6b8,
         type: 3}
