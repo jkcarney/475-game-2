@@ -45,9 +45,9 @@ public class OrderManager : MonoBehaviour
         }
         
         PrintOrder.GetComponent<Text>().text = ""; //Clear the text
-        string result = "Order: ";
+        string result = "Order: \n";
         foreach (string item in currentOrder){ //Add each item to the text
-            result += item + " ";
+            result += item + " \n";
         }
         PrintOrder.GetComponent<Text>().text = result;
 

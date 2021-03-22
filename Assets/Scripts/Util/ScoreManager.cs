@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+//call method in score manager but do logic in score UI
 public class ScoreManager : MonoBehaviour
 {
     public int currentScore;
@@ -14,12 +15,15 @@ public class ScoreManager : MonoBehaviour
     public AudioClip goodScore;
     public AudioClip greatScore;
     public AudioClip amazingScore;
+    
+    Text ScoreZero;
 
     void Start()
     {
         currentScore = 0;
+        ScoreZero = GameObject.Find("ScoreZero").GetComponent<Text>();
     }
-
+    
     // "correctItems" is defined as the food items in the correct sequence 
     // "badItems" is defined as the amount of bad food items in the given burger
     public void AddScore(int correctItems, int badItems)
@@ -29,6 +33,7 @@ public class ScoreManager : MonoBehaviour
 
         currentScore += calculatedScore;
         DisplayAddedScore(calculatedScore, correctItems, badItems);
+        ScoreZero.GetComponent<Text>().text = currentScore + "";
     }
 
     private void DisplayAddedScore(int score, int good, int bad)
