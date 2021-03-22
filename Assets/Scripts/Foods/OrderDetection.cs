@@ -14,6 +14,9 @@ public class OrderDetection : MonoBehaviour
     private BoxCollider orderCollider;
 
     private List<Collider> triggerList = new List<Collider>();
+
+    private Vector3 orderDetectorTriggerCenterDefault = new Vector3(0.0f, -1.2f, 0.0f);
+    private Vector3 orderDetectorTriggerSizeDefault = new Vector3(1.0f, 0.75f, 1.0f);
     
     void Start()
     {
@@ -66,6 +69,12 @@ public class OrderDetection : MonoBehaviour
             orderCollider.size = new Vector3(orderCollider.size.x, orderCollider.size.y - 0.4f, orderCollider.size.z);
             orderCollider.center = new Vector3(orderCollider.center.x, orderCollider.center.y + 0.2f, orderCollider.center.z);
         }
+    }
+
+    public void ResetOrderDetectorTrigger()
+    {
+        orderCollider.center = orderDetectorTriggerCenterDefault;
+        orderCollider.size = orderDetectorTriggerSizeDefault;
     }
 
     public List<string> GetWhatsOnPan()

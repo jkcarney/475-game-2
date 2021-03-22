@@ -62,6 +62,7 @@ public class OrderManager : MonoBehaviour
             // Item2 = bad items
             scoreManager.AddScore(orderCorrectness.Item1, orderCorrectness.Item2);
             orderDetector.RemoveAllPanItems();
+            orderDetector.ResetOrderDetectorTrigger();
             currentOrderExists = false;
             lastTimeOrderChecked = Time.time;
         }
