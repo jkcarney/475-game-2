@@ -8,6 +8,8 @@ public class LevelInformation : MonoBehaviour
     public float percentChanceForGarbage;
     public string levelTitle;
     public int titleFontSize = 150;
+    public float fallingSpeed = -9.81f;
     [TextArea(15,20)]
     public string levelDescription;
+    
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.IO;
 
 public class MainMenuCamera : MonoBehaviour
@@ -118,6 +119,7 @@ public class MainMenuCamera : MonoBehaviour
         // Static class gets updated with the level information
         DifficultyStatic.difficulty = level.difficulty;
         DifficultyStatic.trashChance = level.percentChanceForGarbage;
+        DifficultyStatic.fallingSpeed = level.fallingSpeed;
 
         // Log for sanity check
         Debug.Log("DIFFICULTY: " + DifficultyStatic.difficulty + " TRASH CHANCE: " + DifficultyStatic.trashChance);
@@ -162,6 +164,11 @@ public class MainMenuCamera : MonoBehaviour
             currentLevelIndex = levelLoad.Length - 1;
         }
         SpawnLevelAtGivenIndex(currentLevelIndex);
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Main", LoadSceneMode.Single);
     }
 
     // MENU BUTTONS

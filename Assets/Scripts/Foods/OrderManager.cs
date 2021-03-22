@@ -35,6 +35,7 @@ public class OrderManager : MonoBehaviour
         reversedCurrentOrder = new List<string>();
         difficulty = DifficultyStatic.difficulty;
         PrintOrder = GameObject.Find("PrintOrder").GetComponent<Text>();
+        Physics.gravity = new Vector3(0.0f, DifficultyStatic.fallingSpeed, 0.0f);
     } 
 
     void Update()
