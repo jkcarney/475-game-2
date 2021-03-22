@@ -26,7 +26,7 @@ public class MainMenuCamera : MonoBehaviour
 
     void Start()
     {
-        path = Application.dataPath + "/username.txt";
+        path = Application.dataPath + "/PleaseDontModifyThisPleaseDontMakeMeWriteAnEncryptionAlgorithm.txt";
         Physics.gravity = new Vector3(0.0f, gravityPower, 0.0f);
     }
 
