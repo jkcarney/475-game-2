@@ -36,3 +36,7 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# Username file
+Assets/username.txt
+Assets/username.txt.meta

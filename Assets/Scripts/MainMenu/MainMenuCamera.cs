@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class MainMenuCamera : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class MainMenuCamera : MonoBehaviour
 
     public GameObject titleObj;
     public GameObject menuObj;
+    public GameObject promptObj;
 
     public float rotationSpeed;
 
@@ -20,8 +22,11 @@ public class MainMenuCamera : MonoBehaviour
     // Start current level index at -1 for the main menu
     private int currentLevelIndex = -1;
 
+    private string path;
+
     void Start()
     {
+        path = Application.dataPath + "/username.txt";
         Physics.gravity = new Vector3(0.0f, gravityPower, 0.0f);
     }
 
@@ -29,6 +34,31 @@ public class MainMenuCamera : MonoBehaviour
     {
         // Rotate towards the desired rotation which gets updated in the Rotate function
         transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, target_rotation, Time.deltaTime * rotationSpeed);
+    }
+
+    public void MainMenuValidateUsernameInitialized()
+    {
+        // If a username is already initialized, it's buisness as usual
+        if(File.Exists(path))
+        {
+            DisableTitleCard();
+            EnableMenu();
+            Rotate180Degrees();
+        }
+        // No username file exists; prompt the user.
+        else
+        {
+            DisableTitleCard();
+            EnableUsernamePrompt();
+        }
+    }
+
+    public void WriteUsernameToFile(string username)
+    {
+        if(!File.Exists(path))
+        {
+            File.WriteAllText(path, username);
+        }
     }
 
     public void Rotate180Degrees()
@@ -116,6 +146,16 @@ public class MainMenuCamera : MonoBehaviour
     {
         menuObj.SetActive(true);
         NextDifficulty();
+    }
+
+    public void DisableUsernamePrompt()
+    {
+        promptObj.SetActive(false);
+    }
+
+    public void EnableUsernamePrompt()
+    {
+        promptObj.SetActive(true);
     }
 
     public void QuitGame()
