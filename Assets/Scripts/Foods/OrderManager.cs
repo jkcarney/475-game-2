@@ -9,8 +9,7 @@ public class OrderManager : MonoBehaviour
     // NOTE! The number here reflects how many ingredients go BETWEEN the
     // top and bottom bun, since the top and bottom bun will ALWAYS show the
     // start and end of an order. 
-    [Header("Higher difficulty = more order components, aka harder")]
-    public int difficulty = 2;
+    private int difficulty;
 
     private int ingredientCount;
     private bool currentOrderExists;
@@ -32,6 +31,7 @@ public class OrderManager : MonoBehaviour
         ingredientCount = ingredients.Length;
         currentOrderExists = false;
         currentOrder = new List<string>();
+        difficulty = DifficultyStatic.difficulty;
         PrintOrder = GameObject.Find("PrintOrder").GetComponent<Text>();
     } 
 

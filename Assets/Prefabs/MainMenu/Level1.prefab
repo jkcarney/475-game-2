@@ -23,6 +23,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8229752978032846108}
+  - component: {fileID: 2878740974029700590}
   m_Layer: 0
   m_Name: Level1
   m_TagString: Untagged
@@ -60,6 +61,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2878740974029700590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8229752978032846107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb0a5b3e69d2679419f0129b67b59893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficulty: 6
+  percentChanceForGarbage: 10
+  levelTitle: The BBQ
+  levelDescription: '- Medium difficulty
+
+    - Six ingredients
+
+    - 10% chance
+    to spawn garbage'
 --- !u!1001 &1165908523920785707
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class DifficultyStatic
 {
-    public static int difficulty { get; set; }
-    public static float trashChance { get; set; }
+    public static int difficulty { get; set; } = 2;
+    public static float trashChance { get; set; } = 0.0f;
 }
 

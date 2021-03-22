@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.IO;
 
 public class MainMenuCamera : MonoBehaviour
@@ -86,7 +87,45 @@ public class MainMenuCamera : MonoBehaviour
     // Instaniates the level in the scene at the specified index
     public void SpawnLevelAtGivenIndex(int index)
     {
-        Instantiate(levelLoad[index], new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+        GameObject info = Instantiate(levelLoad[index], new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+
+        // Grab the LevelInformation from the instaniated object
+        LevelInformation level = info.GetComponent<LevelInformation>();
+
+        // Update the main menu and static class
+        UpdateMainMenuUI(level);
+        UpdateStaticClass(level);
+
+        // Have scoreboard display information for specified level
+        DisplayPlayfabScoreboard(index);
+    }
+
+    // Updates the main menu components with the level information
+    public void UpdateMainMenuUI(LevelInformation level)
+    {
+        // Use transform.Find to get the text from the menu UI
+        Text titleText = menuObj.transform.Find("LevelInfo/TitlePanel/TitleText").gameObject.GetComponent<Text>();
+        Text levelDescriptionText = menuObj.transform.Find("LevelInfo/LevelDescription/LevelDescriptionText").gameObject.GetComponent<Text>();
+
+        // Update text components appropriately
+        titleText.text = level.levelTitle;
+        titleText.fontSize = level.titleFontSize;
+        levelDescriptionText.text = level.levelDescription;
+    }
+
+    public void UpdateStaticClass(LevelInformation level)
+    {
+        // Static class gets updated with the level information
+        DifficultyStatic.difficulty = level.difficulty;
+        DifficultyStatic.trashChance = level.percentChanceForGarbage;
+
+        // Log for sanity check
+        Debug.Log("DIFFICULTY: " + DifficultyStatic.difficulty + " TRASH CHANCE: " + DifficultyStatic.trashChance);
+    }
+
+    public void DisplayPlayfabScoreboard(int index)
+    {
+        return;
     }
 
     // Called by the >> button to step through the levels array
