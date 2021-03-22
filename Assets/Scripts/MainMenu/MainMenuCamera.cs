@@ -201,4 +201,18 @@ public class MainMenuCamera : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void ToggleVSync(bool on)
+    {
+        if(on)
+        {
+            QualitySettings.vSyncCount = 1;
+            Debug.Log("VSync On");
+        }
+        else
+        {
+            QualitySettings.vSyncCount = 0;
+            Debug.Log("VSync Off");
+        }
+    }
 }

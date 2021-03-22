@@ -20,6 +20,7 @@ public class OrderManager : MonoBehaviour
     private ScoreManager scoreManager;
 
     private List<string> currentOrder;
+    private List<string> reversedCurrentOrder;
 
     private float lastTimeOrderChecked;
     Text PrintOrder;
@@ -31,6 +32,7 @@ public class OrderManager : MonoBehaviour
         ingredientCount = ingredients.Length;
         currentOrderExists = false;
         currentOrder = new List<string>();
+        reversedCurrentOrder = new List<string>();
         difficulty = DifficultyStatic.difficulty;
         PrintOrder = GameObject.Find("PrintOrder").GetComponent<Text>();
     } 
@@ -46,7 +48,7 @@ public class OrderManager : MonoBehaviour
         
         PrintOrder.GetComponent<Text>().text = ""; //Clear the text
         string result = "Order: \n";
-        foreach (string item in currentOrder){ //Add each item to the text
+        foreach (string item in reversedCurrentOrder){ //Add each item to the text
             result += item + " \n";
         }
         PrintOrder.GetComponent<Text>().text = result;
@@ -78,9 +80,12 @@ public class OrderManager : MonoBehaviour
         {
             int index = UnityEngine.Random.Range(2, ingredientCount);
             currentOrder.Add(Enum.GetName(typeof(FoodItem.Food), index));
-        }
+        } 
         // All orders end with a top bun
         currentOrder.Add(Enum.GetName(typeof(FoodItem.Food), 0));
+        // Initialize reversed list for printing
+        reversedCurrentOrder = new List<string>(currentOrder);
+        reversedCurrentOrder.Reverse();
         currentOrderExists = true;
     }
 
