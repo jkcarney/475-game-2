@@ -40,6 +40,7 @@ public class OrderManager : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(GetNextExpectedItem());
         // If theres no order, create one
         if(!currentOrderExists)
         {
@@ -102,6 +103,24 @@ public class OrderManager : MonoBehaviour
     public List<string> GetCurrentOrder()
     {
         return currentOrder;
+    }
+
+    // Gets the next item expected
+    public string GetNextExpectedItem()
+    {
+        // Get the current pan
+        List<string> currentPan = orderDetector.GetWhatsOnPan();
+        // If the sizes are equal, there is no next expected item
+        if(currentPan.Count == currentOrder.Count)
+        {
+            return "Nothing";
+        }
+        // If the sizes aren't equal, get the item at the index of the currentPan's count
+        else
+        {
+            int index = currentPan.Count;
+            return currentOrder[index];
+        }
     }
 
     // First int is amount of good orders (in order)
