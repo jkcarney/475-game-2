@@ -23,4 +23,17 @@ public class ScoreboardUpdater : MonoBehaviour
 
         loadingIcon.SetActive(false);
     }
+
+    public void EnableLoadingIcon()
+    {
+        loadingIcon.SetActive(true);
+    }
+
+    public void ClearScoreboard()
+    {
+        foreach (Transform child in rowParent)
+        {
+            Destroy(child.gameObject);
+        }
+    }
 }

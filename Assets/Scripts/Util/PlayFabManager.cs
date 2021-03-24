@@ -90,6 +90,7 @@ public class PlayFabManager : MonoBehaviour
 
     void OnLeaderboardGet(GetLeaderboardResult result)
     {
+        Debug.Log("Scoreboard was successsful gotten");
         GameObject.FindGameObjectWithTag("ScoreboardParent").GetComponent<ScoreboardUpdater>().UpdateScoreboard(result);
     }
 }

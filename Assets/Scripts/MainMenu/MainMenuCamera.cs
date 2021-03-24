@@ -109,6 +109,9 @@ public class MainMenuCamera : MonoBehaviour
     public void SpawnLevelAtGivenIndex(int index)
     {
         GameObject info = Instantiate(levelLoad[index], new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity);
+        ScoreboardUpdater scoreboard = menuObj.transform.Find("Scoreboard").GetComponent<ScoreboardUpdater>();
+        scoreboard.ClearScoreboard();
+        scoreboard.EnableLoadingIcon();
 
         // Grab the LevelInformation from the instaniated object
         LevelInformation level = info.GetComponent<LevelInformation>();
