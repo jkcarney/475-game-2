@@ -12,13 +12,13 @@ public class Bird : MonoBehaviour
     void Start()
     {
         direction = new Vector3(Random.Range(80f, 120f), Random.Range(60f, 100f), transform.position.z);
-        speed = Random.Range(30f, 45f);
+        speed = Random.Range(35f, 55f);
         Destroy(gameObject, suicideTimer);
     }
 
     void FixedUpdate()
     {
-        speed += 0.01f;
+        speed += 0.02f;
         float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, direction, step);
     }

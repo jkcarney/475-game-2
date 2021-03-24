@@ -114,4 +114,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7fe41d25d5ba4948b4e862c30467b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  suicideTimer: 10
+  suicideTimer: 7
