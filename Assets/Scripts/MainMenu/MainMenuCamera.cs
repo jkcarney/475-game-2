@@ -118,7 +118,7 @@ public class MainMenuCamera : MonoBehaviour
         UpdateStaticClass(level);
 
         // Have scoreboard display information for specified level
-        DisplayPlayfabScoreboard(index);
+        playfabManager.GetLeaderboard(level.associatedScoreboard);
     }
 
     // Updates the main menu components with the level information
@@ -198,11 +198,6 @@ public class MainMenuCamera : MonoBehaviour
         playfabManagerObject.GetComponent<PlayFabManager>().UpdateDisplayName(System.IO.File.ReadAllText(path));
     }
     
-    public void DisplayPlayfabScoreboard(int index)
-    {
-        return;
-    }
-
     // Is called upon successful login by PlayFabManager.
     public void SuccessfulLogin()
     {

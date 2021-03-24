@@ -9,6 +9,7 @@ public class LevelInformation : MonoBehaviour
     public string levelTitle;
     public int titleFontSize = 150;
     public float fallingSpeed = -9.81f;
+    public string associatedScoreboard;
     [TextArea(15,20)]
     public string levelDescription;
     

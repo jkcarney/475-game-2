@@ -76,6 +76,9 @@ MonoBehaviour:
   difficulty: 6
   percentChanceForGarbage: 10
   levelTitle: The BBQ
+  titleFontSize: 150
+  fallingSpeed: -9.81
+  associatedScoreboard: BurgerLevel1
   levelDescription: '- Medium difficulty
 
     - Six ingredients

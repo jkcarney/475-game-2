@@ -91,6 +91,8 @@ MonoBehaviour:
   percentChanceForGarbage: 25
   levelTitle: Hell's Kitchen
   titleFontSize: 100
+  fallingSpeed: -9.81
+  associatedScoreboard: BurgerLevel2
   levelDescription: '- Hardest difficulty
 
     - Twelve ingredients

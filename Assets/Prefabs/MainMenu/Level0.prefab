@@ -56,6 +56,9 @@ MonoBehaviour:
   difficulty: 2
   percentChanceForGarbage: 0
   levelTitle: Dinner
+  titleFontSize: 150
+  fallingSpeed: -9.81
+  associatedScoreboard: BurgerLevel0
   levelDescription: '- Easiest difficulty
 
     - Two ingredients

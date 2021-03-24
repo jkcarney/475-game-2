@@ -77,4 +77,19 @@ public class PlayFabManager : MonoBehaviour
     {
         Debug.Log("Display name updated.");
     }
+
+    public void GetLeaderboard(string leaderboard)
+    {
+        var request = new GetLeaderboardRequest {
+            StatisticName = leaderboard,
+            StartPosition = 0,
+            MaxResultsCount = 11
+        };
+        PlayFabClientAPI.GetLeaderboard(request, OnLeaderboardGet, OnError);
+    }
+
+    void OnLeaderboardGet(GetLeaderboardResult result)
+    {
+        GameObject.FindGameObjectWithTag("ScoreboardParent").GetComponent<ScoreboardUpdater>().UpdateScoreboard(result);
+    }
 }
