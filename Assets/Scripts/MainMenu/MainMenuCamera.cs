@@ -11,8 +11,13 @@ public class MainMenuCamera : MonoBehaviour
     public GameObject[] levelLoad;
 
     public GameObject titleObj;
+    public GameObject loggingInObj;
+    public GameObject playFabErrorObj;
     public GameObject menuObj;
     public GameObject promptObj;
+    public GameObject playfabManagerObject;
+
+    private PlayFabManager playfabManager;
 
     public float rotationSpeed;
 
@@ -30,6 +35,7 @@ public class MainMenuCamera : MonoBehaviour
     {
         path = Application.dataPath + "/PleaseDontModifyThisPleaseDontMakeMeWriteAnEncryptionAlgorithm.txt";
         Physics.gravity = new Vector3(0.0f, gravityPower, 0.0f);
+        playfabManager = playfabManagerObject.GetComponent<PlayFabManager>();
     }
 
     void Update()
@@ -38,15 +44,29 @@ public class MainMenuCamera : MonoBehaviour
         transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, target_rotation, Time.deltaTime * rotationSpeed);
     }
 
-    public void MainMenuValidateUsernameInitialized()
+    public void MainMenuValidateLogin()
+    {
+        // Validate login
+        if(playfabManager.IsPlayerLoggedIn())
+        {
+            ValidateUsernameInitialized();
+        }
+        // Player is NOT logged in; login to Playfab
+        else
+        {
+            playfabManager.Login();
+            EnableLoginLoading();
+        }
+    }
+    
+    public void ValidateUsernameInitialized()
     {
         // If a username is already initialized, it's buisness as usual
         if(File.Exists(path))
         {
             DisableTitleCard();
             EnableMenu();
-            Rotate180Degrees();
-        }
+            Rotate180Degrees();            }
         // No username file exists; prompt the user.
         else
         {
@@ -125,11 +145,6 @@ public class MainMenuCamera : MonoBehaviour
         Debug.Log("DIFFICULTY: " + DifficultyStatic.difficulty + " TRASH CHANCE: " + DifficultyStatic.trashChance);
     }
 
-    public void DisplayPlayfabScoreboard(int index)
-    {
-        return;
-    }
-
     // Called by the >> button to step through the levels array
     public void NextDifficulty()
     {
@@ -171,7 +186,53 @@ public class MainMenuCamera : MonoBehaviour
         SceneManager.LoadScene("Main", LoadSceneMode.Single);
     }
 
+    // PLAYFAB STUFF
+
+    public void EnablePlayfabManager()
+    {
+        playfabManagerObject.SetActive(true);
+    }
+
+    public void UpdateDisplayName()
+    {
+        playfabManagerObject.GetComponent<PlayFabManager>().UpdateDisplayName(System.IO.File.ReadAllText(path));
+    }
+    
+    public void DisplayPlayfabScoreboard(int index)
+    {
+        return;
+    }
+
+    // Is called upon successful login by PlayFabManager.
+    public void SuccessfulLogin()
+    {
+        ValidateUsernameInitialized();
+        DisableLoginLoading();
+    }
+
+    // Is called upon a failure to login
+    public void LoginError()
+    {
+        EnableError();
+        DisableLoginLoading();
+    }
+
     // MENU BUTTONS
+
+    public void DisableLoginLoading()
+    {
+        loggingInObj.SetActive(false);
+    }
+
+    public void EnableLoginLoading()
+    {
+        loggingInObj.SetActive(true);
+    }
+
+    public void EnableError()
+    {
+        playFabErrorObj.SetActive(true);
+    }
 
     public void DisableTitleCard()
     {

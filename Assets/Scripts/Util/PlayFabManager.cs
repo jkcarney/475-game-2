@@ -6,55 +6,53 @@ using PlayFab.ClientModels;
 
 public class PlayFabManager : MonoBehaviour
 {
-    public int timesClicked;
+    public MainMenuCamera mainMenuController;
 
-    // Start is called before the first frame update
     void Start()
     {
-        timesClicked = 0;
-        Login();
+        DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       if(Input.GetMouseButtonDown(0))
-       {
-           ++timesClicked;
-       } 
-
-       if(Input.GetKeyDown("space"))
-       {
-           SendLeaderboard(timesClicked);
-           timesClicked = 0;
-       }
-    }
-
-    void Login()
+    public void Login()
     {
         var request = new LoginWithCustomIDRequest{
             CustomId = SystemInfo.deviceUniqueIdentifier,
-            CreateAccount = true
+            CreateAccount = true,
+            InfoRequestParameters = new GetPlayerCombinedInfoRequestParams {
+                GetPlayerProfile = true
+            }
         };
-        PlayFabClientAPI.LoginWithCustomID(request, OnSuccess, OnError);
+        PlayFabClientAPI.LoginWithCustomID(request, OnSuccessfulLogin, OnError);
     }
 
-    void OnSuccess(LoginResult result)
+    public bool IsPlayerLoggedIn()
+    {
+        return PlayFabClientAPI.IsClientLoggedIn();
+    }
+
+    void OnSuccessfulLogin(LoginResult result)
     {
         Debug.Log("Successful login!");
+        mainMenuController.SuccessfulLogin();
+    }
+
+    void OnLoginError(PlayFabError error)
+    {
+        Debug.Log("Error logging into Playfab: " + error.GenerateErrorReport());
+        mainMenuController.LoginError();
     }
 
     void OnError(PlayFabError error)
     {
-        Debug.Log("Error logging into Playfab: " + error.GenerateErrorReport());
+        Debug.Log("Error with Playfab: " + error.GenerateErrorReport());
     }
 
-    public void SendLeaderboard(int score)
+    public void SendLeaderboard(string scoreboard, int score)
     {
         var request = new UpdatePlayerStatisticsRequest {
             Statistics = new List<StatisticUpdate> {
                 new StatisticUpdate {
-                    StatisticName = "TestLeaderboard", 
+                    StatisticName = scoreboard, 
                     Value = score
                 }
             }
@@ -65,5 +63,18 @@ public class PlayFabManager : MonoBehaviour
     void OnLeaderboardUpdate(UpdatePlayerStatisticsResult result)
     {
         Debug.Log("Successful leaderboard send!");
+    }
+
+    public void UpdateDisplayName(string display)
+    {
+        var request = new UpdateUserTitleDisplayNameRequest {
+            DisplayName = display
+        };
+        PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameUpdate, OnError);
+    }
+
+    void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
+    {
+        Debug.Log("Display name updated.");
     }
 }
