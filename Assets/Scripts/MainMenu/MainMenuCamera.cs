@@ -17,6 +17,8 @@ public class MainMenuCamera : MonoBehaviour
     public GameObject promptObj;
     public GameObject playfabManagerObject;
 
+    public GameObject musicManager;
+
     private PlayFabManager playfabManager;
 
     public float rotationSpeed;
@@ -36,6 +38,7 @@ public class MainMenuCamera : MonoBehaviour
         path = Application.dataPath + "/PleaseDontModifyThisPleaseDontMakeMeWriteAnEncryptionAlgorithm.txt";
         Physics.gravity = new Vector3(0.0f, gravityPower, 0.0f);
         playfabManager = playfabManagerObject.GetComponent<PlayFabManager>();
+        DontDestroyOnLoad(musicManager);
     }
 
     void Update()
