@@ -22,7 +22,7 @@ public class PlayFabManager : MonoBehaviour
                 GetPlayerProfile = true
             }
         };
-        PlayFabClientAPI.LoginWithCustomID(request, OnSuccessfulLogin, OnError);
+        PlayFabClientAPI.LoginWithCustomID(request, OnSuccessfulLogin, OnLoginError);
     }
 
     public bool IsPlayerLoggedIn()
