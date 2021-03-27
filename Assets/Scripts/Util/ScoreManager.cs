@@ -5,7 +5,7 @@ using UnityEngine.UI;
 //call method in score manager but do logic in score UI
 public class ScoreManager : MonoBehaviour
 {
-    public int currentScore;
+    public static int currentScore;
     [Range(1, 100)]
     public int goodItemsFactor;
     
