@@ -7,6 +7,8 @@ public class OrderDetection : MonoBehaviour
     [Range(-150.0f, 0.0f)]
     public float stickiness;
 
+    public float centerBalance;
+
     public AudioSource leavingFoodSFX;
 
     public GameObject goodNextItemParticle;
@@ -40,6 +42,12 @@ public class OrderDetection : MonoBehaviour
             foreach(Collider c in triggerList)
             {
                 c.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(0.0f, stickiness, 0.0f), ForceMode.Acceleration);
+
+                c.gameObject.transform.position = Vector3.MoveTowards(
+                    (c.gameObject.transform.position), 
+                    new Vector3(transform.position.x, c.gameObject.transform.position.y, transform.position.z), 
+                    centerBalance * Time.deltaTime
+                    );
             }
         }
     }

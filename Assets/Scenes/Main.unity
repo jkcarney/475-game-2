@@ -773,6 +773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stickiness: -50
+  centerBalance: 1
   leavingFoodSFX: {fileID: 576415981}
   goodNextItemParticle: {fileID: 8785875882858338965, guid: 200f78497b56606438866e6c6919de8c,
     type: 3}
