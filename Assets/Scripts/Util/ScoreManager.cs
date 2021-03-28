@@ -10,17 +10,21 @@ public class ScoreManager : MonoBehaviour
     public int goodItemsFactor;
     
     public GameObject textPopup;
+    public GameObject smallTextPopup;
 
     public AudioClip badScore;
     public AudioClip goodScore;
     public AudioClip greatScore;
     public AudioClip amazingScore;
+
+    private countDown timer;
     
     Text ScoreZero;
 
     void Start()
     {
         currentScore = 0;
+        timer = GameObject.Find("Main Camera").GetComponent<countDown>();
         ScoreZero = GameObject.Find("ScoreZero").GetComponent<Text>();
     }
     
@@ -32,8 +36,26 @@ public class ScoreManager : MonoBehaviour
         calculatedScore = (((correctItems * goodItemsFactor) + (correctItems + badItems)) / (1 + badItems)) * DifficultyStatic.difficulty; 
 
         currentScore += calculatedScore;
+
+        if(correctItems > 1)
+        {
+            timer.AddTime(calculatedScore * 0.01f);
+            DisplayAddedTime(calculatedScore * 0.01f);
+        }
+            
+        
         DisplayAddedScore(calculatedScore, correctItems, badItems);
         ScoreZero.GetComponent<Text>().text = currentScore + "";
+    }
+
+    private void DisplayAddedTime(float time)
+    {
+        time = Mathf.Round(time);
+        Vector3 spawnLocation = GameObject.Find("PlateHand").transform.position;
+        spawnLocation = new Vector3(spawnLocation.x, spawnLocation.y + 3f, spawnLocation.z);
+        GameObject text = Instantiate(smallTextPopup, spawnLocation, Quaternion.identity);
+        TextMesh mesh = text.GetComponent<TextMesh>();
+        mesh.text = "+" + time.ToString() + "s";
     }
 
     private void DisplayAddedScore(int score, int good, int bad)

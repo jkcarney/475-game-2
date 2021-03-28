@@ -417,6 +417,8 @@ MonoBehaviour:
   goodItemsFactor: 100
   textPopup: {fileID: 4918181147321044010, guid: 3a74e92039ed89a4f8551f8e144b229d,
     type: 3}
+  smallTextPopup: {fileID: 4918181147321044010, guid: 511f6a00e6edd374088e10a4382926b6,
+    type: 3}
   badScore: {fileID: 8300000, guid: 10dd89ec4f02488449291b0b8aa15d35, type: 3}
   goodScore: {fileID: 8300000, guid: 136382010d6c6ad46a1c2364a063a671, type: 3}
   greatScore: {fileID: 8300000, guid: 3acc614833988ad47983897983975b2d, type: 3}

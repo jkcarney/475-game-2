@@ -26,4 +26,16 @@ public class countDown : MonoBehaviour
             SceneManager.LoadScene("gameOver");
         }
     }
+
+    public void AddTime(float timeToAdd)
+    {
+        timeStart += timeToAdd;
+        textBox.color = Color.green;
+        Invoke("TurnWhite", 1.0f);
+    }
+
+    private void TurnWhite()
+    {
+        textBox.color = Color.white;
+    }
 }
