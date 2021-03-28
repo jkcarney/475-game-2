@@ -61,6 +61,10 @@ public class OrderDetection : MonoBehaviour
         {
             triggerList.Add(other);
             string nextFood = other.GetComponent<FoodItem>().foodName.ToString();
+            if(other.GetComponent<FoodItem>().isGarbage)
+            {
+                nextFood = "GARBAGE";
+            }
             // If the item added matches, play sound w/ particle
             if(nextFood == om.GetNextExpectedItem())
             {
@@ -83,6 +87,10 @@ public class OrderDetection : MonoBehaviour
         {
             triggerList.Remove(other);
             string foodGone = other.GetComponent<FoodItem>().foodName.ToString();
+            if(other.GetComponent<FoodItem>().isGarbage)
+            {
+                foodGone = "GARBAGE";
+            }
             isOnPan.Remove(foodGone);
             // Shrink size of collider appropriately
             orderCollider.size = new Vector3(orderCollider.size.x, orderCollider.size.y - 0.4f, orderCollider.size.z);
