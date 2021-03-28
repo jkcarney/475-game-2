@@ -6,6 +6,8 @@ public class OrderDetection : MonoBehaviour
 {
     [Range(-150.0f, 0.0f)]
     public float stickiness;
+
+    public AudioSource leavingFoodSFX;
     
     private OrderManager om;
 
@@ -68,6 +70,8 @@ public class OrderDetection : MonoBehaviour
             // Shrink size of collider appropriately
             orderCollider.size = new Vector3(orderCollider.size.x, orderCollider.size.y - 0.4f, orderCollider.size.z);
             orderCollider.center = new Vector3(orderCollider.center.x, orderCollider.center.y + 0.2f, orderCollider.center.z);
+            leavingFoodSFX.pitch = Random.Range(0.75f, 1.25f);
+            leavingFoodSFX.Play();
         }
     }
 

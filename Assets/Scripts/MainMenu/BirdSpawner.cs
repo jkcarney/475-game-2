@@ -10,10 +10,16 @@ public class BirdSpawner : MonoBehaviour
     public int spawnFlockMin;
     public int spawnFlockMax;
 
+    public AudioSource birdsChirping;
+    public AudioSource birdsFlapping;
+
+    private MainMenuCamera menuCamera;
+
     private float lastSpawned;
 
     void Start()
     {
+        menuCamera = GameObject.Find("MainMenuCamera").GetComponent<MainMenuCamera>();
         SpawnBird(Random.Range(spawnFlockMin, spawnFlockMax));
     }
 
@@ -39,6 +45,13 @@ public class BirdSpawner : MonoBehaviour
             );
 
             b.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + Random.Range(-10f, 10f));
+        }
+        if(menuCamera.isLookingAtBirds())
+        {
+            birdsChirping.pitch = Random.Range(0.80f, 1.2f);
+            birdsFlapping.pitch = Random.Range(0.80f, 1.20f);
+            birdsChirping.Play();
+            birdsFlapping.Play();
         }
     }
 }

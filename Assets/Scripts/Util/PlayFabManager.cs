@@ -62,7 +62,8 @@ public class PlayFabManager : MonoBehaviour
 
     void OnLeaderboardUpdate(UpdatePlayerStatisticsResult result)
     {
-        Debug.Log("Successful leaderboard send!");
+        Debug.Log("Successful leaderboard send. Updating scene scoreboard.");
+        StartCoroutine("GetLeaderboardDelay");
     }
 
     public void UpdateDisplayName(string display)
@@ -76,6 +77,12 @@ public class PlayFabManager : MonoBehaviour
     void OnDisplayNameUpdate(UpdateUserTitleDisplayNameResult result)
     {
         Debug.Log("Display name updated.");
+    }
+
+    IEnumerator GetLeaderboardDelay()
+    {
+        yield return new WaitForSeconds(1.5f);
+        GetLeaderboard(DifficultyStatic.playfabScoreboard);
     }
 
     public void GetLeaderboard(string leaderboard)

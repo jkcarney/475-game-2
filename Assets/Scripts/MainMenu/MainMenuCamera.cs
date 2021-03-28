@@ -25,6 +25,8 @@ public class MainMenuCamera : MonoBehaviour
 
     public float gravityPower;
 
+    private AudioSource buttonPress;
+
     private Vector3 target_rotation;
     private bool isFacingSky = true;
     
@@ -35,10 +37,16 @@ public class MainMenuCamera : MonoBehaviour
 
     void Start()
     {
+        buttonPress = GetComponent<AudioSource>();
         path = Application.dataPath + "/PleaseDontModifyThisPleaseDontMakeMeWriteAnEncryptionAlgorithm.txt";
         Physics.gravity = new Vector3(0.0f, gravityPower, 0.0f);
         playfabManager = playfabManagerObject.GetComponent<PlayFabManager>();
         DontDestroyOnLoad(musicManager);
+    }
+
+    public bool isLookingAtBirds()
+    {
+        return isFacingSky;
     }
 
     void Update()
@@ -69,7 +77,8 @@ public class MainMenuCamera : MonoBehaviour
         {
             DisableTitleCard();
             EnableMenu();
-            Rotate180Degrees();            }
+            Rotate180Degrees();
+        }
         // No username file exists; prompt the user.
         else
         {
@@ -146,9 +155,11 @@ public class MainMenuCamera : MonoBehaviour
         DifficultyStatic.difficulty = level.difficulty;
         DifficultyStatic.trashChance = level.percentChanceForGarbage;
         DifficultyStatic.fallingSpeed = level.fallingSpeed;
+        DifficultyStatic.playfabScoreboard = level.associatedScoreboard;
 
         // Log for sanity check
         Debug.Log("DIFFICULTY: " + DifficultyStatic.difficulty + " TRASH CHANCE: " + DifficultyStatic.trashChance);
+        Debug.Log("WILL SEND TO: " + DifficultyStatic.playfabScoreboard);
     }
 
     // Called by the >> button to step through the levels array
@@ -219,6 +230,12 @@ public class MainMenuCamera : MonoBehaviour
     }
 
     // MENU BUTTONS
+
+    public void ButtonPressSFX()
+    {
+        buttonPress.pitch = Random.Range(0.70f, 1.30f);
+        buttonPress.Play();
+    }
 
     public void DisableLoginLoading()
     {
