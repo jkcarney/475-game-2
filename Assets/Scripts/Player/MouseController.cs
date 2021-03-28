@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MouseController : MonoBehaviour
 {
@@ -15,6 +16,14 @@ public class MouseController : MonoBehaviour
     {
         // When the game begins we want the cursor to vanish
         Cursor.visible = false;
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene("Main");
+        }
     }
 
     void FixedUpdate()
