@@ -27,6 +27,7 @@ public class Spawning : MonoBehaviour
         {
             ingredientNames[i] = ingredients[i].name;
         }
+        spawnRate = DifficultyStatic.foodSpawnRate;
     }
     //spawns food at Random X between -10 and 10, 30 Y, and -25 Z
     void Spawn(GameObject prefab)

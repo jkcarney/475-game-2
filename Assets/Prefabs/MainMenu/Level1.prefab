@@ -73,18 +73,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0a5b3e69d2679419f0129b67b59893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 4
+  difficulty: 3
   percentChanceForGarbage: 10
   levelTitle: The BBQ
   titleFontSize: 150
   fallingSpeed: -9.81
+  foodSpawnRate: 0.8
   associatedScoreboard: BurgerLevel1
   levelDescription: '- Medium difficulty
 
-    - Four ingredients per order
+    - Three ingredients per order
 
     -
-    10% chance to spawn garbage'
+    10% chance to spawn garbage
+
+    - Ingredients spawn at a medium rate'
 --- !u!1001 &1165908523920785707
 PrefabInstance:
   m_ObjectHideFlags: 0

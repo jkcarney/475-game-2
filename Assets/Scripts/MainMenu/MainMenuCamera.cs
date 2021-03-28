@@ -165,6 +165,7 @@ public class MainMenuCamera : MonoBehaviour
         DifficultyStatic.trashChance = level.percentChanceForGarbage;
         DifficultyStatic.fallingSpeed = level.fallingSpeed;
         DifficultyStatic.playfabScoreboard = level.associatedScoreboard;
+        DifficultyStatic.foodSpawnRate = level.foodSpawnRate;
 
         // Log for sanity check
         Debug.Log("DIFFICULTY: " + DifficultyStatic.difficulty + " TRASH CHANCE: " + DifficultyStatic.trashChance);

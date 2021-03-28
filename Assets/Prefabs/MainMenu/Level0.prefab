@@ -58,13 +58,16 @@ MonoBehaviour:
   levelTitle: Dinner
   titleFontSize: 150
   fallingSpeed: -9.81
+  foodSpawnRate: 1
   associatedScoreboard: BurgerLevel0
   levelDescription: '- Easiest difficulty
 
     - Two ingredients per order
 
     -
-    0% chance to spawn garbage'
+    0% chance to spawn garbage
+
+    - Ingredients spawn at a slow rate'
 --- !u!64 &400693878314247097
 MeshCollider:
   m_ObjectHideFlags: 0

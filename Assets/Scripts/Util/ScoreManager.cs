@@ -29,7 +29,7 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(int correctItems, int badItems)
     {
         int calculatedScore = 0;
-        calculatedScore = ((correctItems * goodItemsFactor) + (correctItems + badItems)) / (1 + badItems); 
+        calculatedScore = (((correctItems * goodItemsFactor) + (correctItems + badItems)) / (1 + badItems)) * DifficultyStatic.difficulty; 
 
         currentScore += calculatedScore;
         DisplayAddedScore(calculatedScore, correctItems, badItems);
