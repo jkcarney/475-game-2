@@ -39,8 +39,8 @@ public class ScoreManager : MonoBehaviour
 
         if(correctItems > 1)
         {
-            timer.AddTime(calculatedScore * 0.01f);
-            DisplayAddedTime(calculatedScore * 0.01f);
+            timer.AddTime(Mathf.Clamp((calculatedScore * 0.01f), 0.0f, 10.0f));
+            DisplayAddedTime(Mathf.Clamp((calculatedScore * 0.01f), 0.0f, 10.0f));
         }
             
         
