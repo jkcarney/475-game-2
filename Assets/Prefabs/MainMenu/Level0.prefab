@@ -61,10 +61,10 @@ MonoBehaviour:
   associatedScoreboard: BurgerLevel0
   levelDescription: '- Easiest difficulty
 
-    - Two ingredients
+    - Two ingredients per order
 
-    - 0% chance
-    to spawn garbage'
+    -
+    0% chance to spawn garbage'
 --- !u!64 &400693878314247097
 MeshCollider:
   m_ObjectHideFlags: 0

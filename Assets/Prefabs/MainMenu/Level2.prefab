@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0a5b3e69d2679419f0129b67b59893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 12
+  difficulty: 6
   percentChanceForGarbage: 25
   levelTitle: Hell's Kitchen
   titleFontSize: 100
@@ -95,10 +95,10 @@ MonoBehaviour:
   associatedScoreboard: BurgerLevel2
   levelDescription: '- Hardest difficulty
 
-    - Twelve ingredients
+    - Six ingredients per order
 
-    - 25% chance
-    to spawn garbage'
+    -
+    25% chance to spawn garbage'
 --- !u!1001 &10647353161512097
 PrefabInstance:
   m_ObjectHideFlags: 0
