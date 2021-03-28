@@ -8,6 +8,8 @@ public class OrderDetection : MonoBehaviour
     public float stickiness;
 
     public AudioSource leavingFoodSFX;
+
+    public GameObject goodNextItemParticle;
     
     private OrderManager om;
 
@@ -51,6 +53,13 @@ public class OrderDetection : MonoBehaviour
         {
             triggerList.Add(other);
             string nextFood = other.GetComponent<FoodItem>().foodName.ToString();
+            // If the item added matches, play sound w/ particle
+            if(nextFood == om.GetNextExpectedItem())
+            {
+                GameObject p = Instantiate(goodNextItemParticle, other.transform.position, Quaternion.identity);
+                p.GetComponent<AudioSource>().Play();
+                Destroy(p, 2.0f);
+            }
             isOnPan.Add(nextFood);
             // Expand size of collider to detect new ingredients 
             orderCollider.size = new Vector3(orderCollider.size.x, orderCollider.size.y + 0.4f, orderCollider.size.z);
