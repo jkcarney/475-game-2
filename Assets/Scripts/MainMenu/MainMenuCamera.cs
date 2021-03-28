@@ -35,6 +35,8 @@ public class MainMenuCamera : MonoBehaviour
 
     private string path;
 
+    private static bool musicIsPlaying = false;
+
     void Start()
     {
         buttonPress = GetComponent<AudioSource>();
@@ -42,6 +44,11 @@ public class MainMenuCamera : MonoBehaviour
         Physics.gravity = new Vector3(0.0f, gravityPower, 0.0f);
         playfabManager = playfabManagerObject.GetComponent<PlayFabManager>();
         DontDestroyOnLoad(musicManager);
+        if(!musicIsPlaying)
+        {
+            musicManager.GetComponent<AudioSource>().Play();
+            musicIsPlaying = true;
+        }
     }
 
     public bool isLookingAtBirds()
