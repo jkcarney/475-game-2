@@ -37,6 +37,8 @@ public class MainMenuCamera : MonoBehaviour
 
     private static bool musicIsPlaying = false;
 
+    private float lastButtonPress = 0.0f;
+
     void Start()
     {
         buttonPress = GetComponent<AudioSource>();
@@ -172,37 +174,46 @@ public class MainMenuCamera : MonoBehaviour
     // Called by the >> button to step through the levels array
     public void NextDifficulty()
     {
-        // We start at -1, so don't try to find something at the -1 index
-        if(currentLevelIndex != -1)
+        // Allow progression of difficulty after short delay to fix bug with scoreboard
+        if(Time.time > lastButtonPress + 0.2f)
         {
-            DestroyLevelAtGivenIndex(currentLevelIndex);
-        }
+            // We start at -1, so don't try to find something at the -1 index
+            if(currentLevelIndex != -1)
+            {
+                DestroyLevelAtGivenIndex(currentLevelIndex);
+            }
 
-        // incr the current level index
-        ++currentLevelIndex;
+            // incr the current level index
+            ++currentLevelIndex;
 
-        // if we've gone over the amount of indexes in the array, set it back to 0 so it's circular
-        if(currentLevelIndex == levelLoad.Length)
-        {
-            currentLevelIndex = 0;
+            // if we've gone over the amount of indexes in the array, set it back to 0 so it's circular
+            if(currentLevelIndex == levelLoad.Length)
+            {
+                currentLevelIndex = 0;
+            }
+            SpawnLevelAtGivenIndex(currentLevelIndex);
+            lastButtonPress = Time.time;
         }
-        SpawnLevelAtGivenIndex(currentLevelIndex);
     }
 
     public void PreviousDifficulty()
     {
-        // Destroy the level at the current index
-        DestroyLevelAtGivenIndex(currentLevelIndex);
-
-        // decr the current level index
-        --currentLevelIndex;
-
-        // if we've gone negative with the indexes, wrap around so it's circular
-        if(currentLevelIndex < 0)
+        if(Time.time > lastButtonPress + 0.2f)
         {
-            currentLevelIndex = levelLoad.Length - 1;
+            // Destroy the level at the current index
+            DestroyLevelAtGivenIndex(currentLevelIndex);
+
+            // decr the current level index
+            --currentLevelIndex;
+
+            // if we've gone negative with the indexes, wrap around so it's circular
+            if(currentLevelIndex < 0)
+            {
+                currentLevelIndex = levelLoad.Length - 1;
+            }
+            SpawnLevelAtGivenIndex(currentLevelIndex);
+            lastButtonPress = Time.time;
         }
-        SpawnLevelAtGivenIndex(currentLevelIndex);
     }
 
     public void StartGame()
