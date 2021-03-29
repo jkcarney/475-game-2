@@ -3316,7 +3316,7 @@ MonoBehaviour:
   - {fileID: 2112299293830636650, guid: 66130eb97b6967746a8e6b9012bea9cf, type: 3}
   - {fileID: 914241874386039845, guid: 70f6d4ab48f02254991c8b29010bb6b8, type: 3}
   badIngredients:
-  - {fileID: 4242331724450811980, guid: fbc24021923f37b48b25cdca96e804aa, type: 3}
+  - {fileID: 1521832180630461740, guid: aa339a17a9bd53545a1ebf76926c1c2e, type: 3}
   spawnRate: 0.5
   graceChance: 50
 --- !u!64 &2019575770

@@ -38,7 +38,7 @@ public class Spawning : MonoBehaviour
     //same method as spawn but used to spawn bad food (work around to spawn bad food above normal food)
     void BadSpawn(GameObject prefab)
     {
-        Instantiate(prefab, new Vector3(UnityEngine.Random.Range(-10.0f, 10.0f), 32.0f, -25.0f), Quaternion.identity);
+        Instantiate(prefab, new Vector3(UnityEngine.Random.Range(-10.0f, 10.0f), 32.0f, -25.0f), Quaternion.Euler(0, 90, 0));
     }
 
     //destroys food on collision with the DestroyPlane
