@@ -774,7 +774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57c815690a1e2584e8008e76632a801f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stickiness: -50
+  stickiness: -60
   centerBalance: 1
   leavingFoodSFX: {fileID: 576415981}
   goodNextItemParticle: {fileID: 8785875882858338965, guid: 200f78497b56606438866e6c6919de8c,

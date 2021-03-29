@@ -7,8 +7,8 @@ PhysicMaterial:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Pan
-  dynamicFriction: 300
-  staticFriction: 300
+  dynamicFriction: 500
+  staticFriction: 500
   bounciness: 0
   frictionCombine: 0
   bounceCombine: 0
