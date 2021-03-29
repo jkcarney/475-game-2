@@ -67,6 +67,11 @@ public class MouseController : MonoBehaviour
             worldPosition.z
         );
         
+        if(!wasdMode)
+        {
+            worldPosition = Vector3.Lerp(transform.position, worldPosition, Time.fixedDeltaTime * 10);
+        }
+        
     }
 
     void FixedUpdate()
