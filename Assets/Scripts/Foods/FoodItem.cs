@@ -16,14 +16,17 @@ public class FoodItem : MonoBehaviour
 
     void Start()
     {
-        GetComponent<MeshRenderer>().material = foodMaterial;
-        GetComponent<BoxCollider>().material = foodPhysics;
+        if(foodMaterial != null && foodPhysics != null)
+        {
+            GetComponent<MeshRenderer>().material = foodMaterial;
+            GetComponent<BoxCollider>().material = foodPhysics;
+        }
         rigidbody = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
     {
-        if(rigidbody.velocity.magnitude > 30f && trackpadMode)
+        if(rigidbody != null && rigidbody.velocity.magnitude > 30f && trackpadMode)
         {
             Debug.Log("EXCEEDED!");
             rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, 30f);

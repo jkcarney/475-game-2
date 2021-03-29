@@ -2060,6 +2060,55 @@ Transform:
   m_Father: {fileID: 1572578492}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1315158133
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1315158134}
+  - component: {fileID: 1315158135}
+  m_Layer: 0
+  m_Name: GhostOrder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1315158134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315158133}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.352, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1968491264}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1315158135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315158133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b311449278079af4b8a3d23791f23f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foods:
+  - {fileID: 4242331724450811980, guid: f2b45a12823ef074ab824987696f107e, type: 3}
+  - {fileID: 914241874386039845, guid: 7e194a7ae788950479d83809bf5628fd, type: 3}
+  - {fileID: 6057715238134531908, guid: 47e9cd3873e508d4bb17821fb6545e23, type: 3}
+  - {fileID: 6057715238134531908, guid: 9e7a0d5c579274b4482c2cd2d991f101, type: 3}
+  - {fileID: 2112299293830636650, guid: 66130eb97b6967746a8e6b9012bea9cf, type: 3}
 --- !u!1 &1320821586
 GameObject:
   m_ObjectHideFlags: 0
@@ -3106,6 +3155,7 @@ Transform:
   m_Children:
   - {fileID: 1630905091}
   - {fileID: 576415978}
+  - {fileID: 1315158134}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -3313,7 +3363,7 @@ MonoBehaviour:
   - {fileID: 4242331724450811980, guid: 4bad97d2dc62ef84c8e495dde6f470c5, type: 3}
   - {fileID: 6057715238134531908, guid: 955957fe271d2704ca09edb4606e96e9, type: 3}
   - {fileID: 6057715238134531908, guid: df4fe1e62a1b9d441be11afa474785b0, type: 3}
-  - {fileID: 2112299293830636650, guid: 66130eb97b6967746a8e6b9012bea9cf, type: 3}
+  - {fileID: 2112299293830636650, guid: 5e284fcb27823124d99e0a53513752c8, type: 3}
   - {fileID: 914241874386039845, guid: 70f6d4ab48f02254991c8b29010bb6b8, type: 3}
   badIngredients:
   - {fileID: 1521832180630461740, guid: aa339a17a9bd53545a1ebf76926c1c2e, type: 3}

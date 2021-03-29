@@ -19,6 +19,8 @@ public class OrderManager : MonoBehaviour
 
     private ScoreManager scoreManager;
 
+    private GhostVisualOrder ghostOrder;
+
     private List<string> currentOrder;
     private List<string> reversedCurrentOrder;
 
@@ -31,6 +33,7 @@ public class OrderManager : MonoBehaviour
     {
         orderDetector = GameObject.Find("OrderDetector").GetComponent<OrderDetection>();
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
+        ghostOrder = GameObject.Find("GhostOrder").GetComponent<GhostVisualOrder>();
         ingredients = Enum.GetNames(typeof(FoodItem.Food));
         ingredientCount = ingredients.Length;
         currentOrderExists = false;
@@ -48,7 +51,6 @@ public class OrderManager : MonoBehaviour
         if(!currentOrderExists)
         {
             InitializeOrder();
-            LogCurrentOrder();
         }
         
         PrintOrder.GetComponent<Text>().text = ""; //Clear the text
@@ -99,6 +101,9 @@ public class OrderManager : MonoBehaviour
         reversedCurrentOrder = new List<string>(currentOrder);
         reversedCurrentOrder.Reverse();
         currentOrderExists = true;
+
+        //Tell ghost order to update
+        ghostOrder.UpdateGhostFoods(GetCurrentOrder());
     }
 
     void LogCurrentOrder()
