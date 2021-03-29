@@ -23,6 +23,9 @@ public class OrderManager : MonoBehaviour
     private List<string> reversedCurrentOrder;
 
     private float lastTimeOrderChecked;
+
+    private bool checkedInFirstOrder = false;
+
     Text PrintOrder;
     void Start()
     {
@@ -36,6 +39,7 @@ public class OrderManager : MonoBehaviour
         difficulty = DifficultyStatic.difficulty;
         PrintOrder = GameObject.Find("PrintOrder").GetComponent<Text>();
         Physics.gravity = new Vector3(0.0f, DifficultyStatic.fallingSpeed, 0.0f);
+        lastTimeOrderChecked = Time.time + 3.0f;
     } 
 
     void Update()
@@ -55,7 +59,7 @@ public class OrderManager : MonoBehaviour
         PrintOrder.GetComponent<Text>().text = result;
 
         // Order comparison
-        if(Input.GetMouseButtonDown(0) && Time.time > lastTimeOrderChecked + 1.0f)
+        if(Input.GetMouseButtonDown(0) && Time.time > lastTimeOrderChecked + 1.2f)
         {
             (int, int) orderCorrectness = CompareOrderToPan(orderDetector.GetWhatsOnPan());
             // Item1 = good items
@@ -65,6 +69,12 @@ public class OrderManager : MonoBehaviour
             orderDetector.ResetOrderDetectorTrigger();
             currentOrderExists = false;
             lastTimeOrderChecked = Time.time;
+
+            if(DifficultyStatic.playfabScoreboard == "NONE" && !checkedInFirstOrder)
+            {
+                GameObject.Find("Main Camera").GetComponent<Tutorial>().ActivateIndex(4);
+            }
+            checkedInFirstOrder = true;
         }
     
     }

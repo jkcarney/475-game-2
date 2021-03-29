@@ -15,7 +15,8 @@ public class MouseController : MonoBehaviour
     void Start()
     {
         // When the game begins we want the cursor to vanish
-        Cursor.visible = false;
+        if(DifficultyStatic.playfabScoreboard != "NONE")
+            Cursor.visible = false;
     }
 
     void Update()

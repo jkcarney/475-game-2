@@ -219,7 +219,14 @@ public class MainMenuCamera : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Main", LoadSceneMode.Single);
+        if(currentLevelIndex == 0)
+        {
+            SceneManager.LoadScene("Tutorial", LoadSceneMode.Single);
+        }
+        else
+        {
+            SceneManager.LoadScene("Main", LoadSceneMode.Single);
+        } 
     }
 
     // PLAYFAB STUFF
