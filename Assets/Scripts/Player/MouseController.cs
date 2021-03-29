@@ -12,6 +12,8 @@ public class MouseController : MonoBehaviour
 
     public Rigidbody plateRB;
 
+    private Vector3 mouseWorldPosition;
+
     void Start()
     {
         // When the game begins we want the cursor to vanish
@@ -25,21 +27,21 @@ public class MouseController : MonoBehaviour
         {
             SceneManager.LoadScene("Main");
         }
-    }
-
-    void FixedUpdate()
-    {
         Vector3 mousePos = Input.mousePosition;
         //Offset plate by an adjustable distance so it's far from the camera.
         //Keep plate within clampX and Y
         mousePos.z += plateDistance;
         //Get the world coordinates of the mouse position
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePos);
+        mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePos);
         mouseWorldPosition = new Vector3(
             Mathf.Clamp(mouseWorldPosition.x, -clampX, clampX),
             Mathf.Clamp(mouseWorldPosition.y, clampYMin, clampYMax),
             mouseWorldPosition.z
         );
+    }
+
+    void FixedUpdate()
+    {
         //Use movePosition because otherwise physics will not be enacted on other objects
         plateRB.MovePosition(mouseWorldPosition);
     }
