@@ -327,4 +327,9 @@ public class MainMenuCamera : MonoBehaviour
             Debug.Log("VSync Off");
         }
     }
+
+    public void TrackpadMode(bool check)
+    {
+        DifficultyStatic.trackpadMode = check;
+    }
 }

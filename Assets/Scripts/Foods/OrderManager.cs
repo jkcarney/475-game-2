@@ -61,7 +61,7 @@ public class OrderManager : MonoBehaviour
         PrintOrder.GetComponent<Text>().text = result;
 
         // Order comparison
-        if(Input.GetMouseButtonDown(0) && Time.time > lastTimeOrderChecked + 1.2f)
+        if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space) && Time.time > lastTimeOrderChecked + 1.2f)
         {
             (int, int) orderCorrectness = CompareOrderToPan(orderDetector.GetWhatsOnPan());
             // Item1 = good items

@@ -9,5 +9,7 @@ public static class DifficultyStatic
     public static float fallingSpeed { get; set; } = -9.81f;
     public static string playfabScoreboard { get; set; } = "";
     public static float foodSpawnRate {get; set; } = 1.0f;
+
+    public static bool trackpadMode {get; set; } = false;
 }
 
