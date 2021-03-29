@@ -18,7 +18,11 @@ public class Tutorial : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.visible = true;
             SceneManager.LoadScene("MainMenu");
+        }
+            
     }
 
     public void ActivateEscUI()
