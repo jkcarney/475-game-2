@@ -45,6 +45,11 @@ public class MouseController : MonoBehaviour
             SceneManager.LoadScene("Main");
         }
 
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+
         if(!wasdMode)
         {
             Vector3 mousePos = Input.mousePosition;
@@ -57,7 +62,7 @@ public class MouseController : MonoBehaviour
         else if (wasdMode)
         {
             Vector3 pos = transform.position;
-            Vector3 moveDirection = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0.0f);
+            Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0.0f);
             worldPosition = pos + moveDirection * keysSpeed * Time.fixedDeltaTime;
         }
 

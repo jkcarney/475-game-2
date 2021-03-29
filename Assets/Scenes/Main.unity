@@ -3294,7 +3294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plateDistance: 20
-  keysSpeed: 15
+  keysSpeed: 20
   clampX: 14
   clampYMin: 4
   clampYMax: 11
