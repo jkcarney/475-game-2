@@ -9,6 +9,13 @@ public class OrderManager : MonoBehaviour
     // NOTE! The number here reflects how many ingredients go BETWEEN the
     // top and bottom bun, since the top and bottom bun will ALWAYS show the
     // start and end of an order. 
+    //public static Text PrintOrder;
+    public static Text ingredientOne;
+    public static Text ingredientTwo;
+    public static Text ingredientThree;
+    public static Text ingredientFour;
+    public static List<string> reversedCurrentOrder;
+
     private int difficulty;
 
     private int ingredientCount;
@@ -22,13 +29,15 @@ public class OrderManager : MonoBehaviour
     private GhostVisualOrder ghostOrder;
 
     private List<string> currentOrder;
-    private List<string> reversedCurrentOrder;
+    //private List<string> reversedCurrentOrder;
+
+    private List<string> PrintOrderList;
+    
 
     private float lastTimeOrderChecked;
 
     private bool checkedInFirstOrder = false;
 
-    Text PrintOrder;
     void Start()
     {
         orderDetector = GameObject.Find("OrderDetector").GetComponent<OrderDetection>();
@@ -40,7 +49,11 @@ public class OrderManager : MonoBehaviour
         currentOrder = new List<string>();
         reversedCurrentOrder = new List<string>();
         difficulty = DifficultyStatic.difficulty;
-        PrintOrder = GameObject.Find("PrintOrder").GetComponent<Text>();
+        //PrintOrder = GameObject.Find("PrintOrder").GetComponent<Text>();
+        ingredientOne = GameObject.Find("ingredientOne").GetComponent<Text>();
+        ingredientTwo = GameObject.Find("ingredientTwo").GetComponent<Text>();
+        ingredientThree = GameObject.Find("ingredientThree").GetComponent<Text>();
+        ingredientFour = GameObject.Find("ingredientFour").GetComponent<Text>();
         Physics.gravity = new Vector3(0.0f, DifficultyStatic.fallingSpeed, 0.0f);
         lastTimeOrderChecked = Time.time + 3.0f;
     } 
@@ -52,13 +65,25 @@ public class OrderManager : MonoBehaviour
         {
             InitializeOrder();
         }
-        
-        PrintOrder.GetComponent<Text>().text = ""; //Clear the text
-        string result = "Order: \n";
-        foreach (string item in reversedCurrentOrder){ //Add each item to the text
-            result += item + " \n";
+        for (int i = 0; i <= 3; ++i){
+            if (i == 0 && reversedCurrentOrder[i] != null){
+                ingredientOne.GetComponent<Text>().text = reversedCurrentOrder[i];
+                //panIter.MoveNext();
+            }
+             if (i == 1 && reversedCurrentOrder[i] != null){
+                ingredientTwo.GetComponent<Text>().text = reversedCurrentOrder[i];
+                //panIter.MoveNext();
+            }
+             if (i == 2 && reversedCurrentOrder[i] != null){
+                ingredientThree.GetComponent<Text>().text = reversedCurrentOrder[i];
+                //panIter.MoveNext();
+            }
+             if (i == 3 && reversedCurrentOrder[i] != null){
+                ingredientFour.GetComponent<Text>().text = reversedCurrentOrder[i];
+            }
+    
         }
-        PrintOrder.GetComponent<Text>().text = result;
+
 
         // Order comparison
         if((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && Time.time > lastTimeOrderChecked + 1.2f)

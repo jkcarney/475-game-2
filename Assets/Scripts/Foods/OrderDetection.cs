@@ -68,10 +68,33 @@ public class OrderDetection : MonoBehaviour
             // If the item added matches, play sound w/ particle
             if(nextFood == om.GetNextExpectedItem())
             {
+                if(om.GetNextExpectedItem() == OrderManager.reversedCurrentOrder[3])
+                {
+                    OrderManager.ingredientFour.color = Color.green;
+                }
+                if(om.GetNextExpectedItem() == OrderManager.reversedCurrentOrder[2])
+                {
+                    OrderManager.ingredientThree.color = Color.green;
+                }
+                if(om.GetNextExpectedItem() == OrderManager.reversedCurrentOrder[1])
+                {
+                    OrderManager.ingredientTwo.color = Color.green;
+                }
+                if(om.GetNextExpectedItem() == OrderManager.reversedCurrentOrder[0])
+                {
+                    OrderManager.ingredientOne.color = Color.green;
+                }
                 GameObject p = Instantiate(goodNextItemParticle, other.transform.position, Quaternion.identity);
                 p.GetComponent<AudioSource>().Play();
                 Destroy(p, 2.0f);
             }
+            /*
+            else if (nextFood != om.GetNextExpectedItem()){
+                    OrderManager.ingredientFour.color = Color.red;
+                    OrderManager.ingredientThree.color = Color.red;
+                    OrderManager.ingredientTwo.color = Color.red;
+                    OrderManager.ingredientOne.color = Color.red;
+            }*/
             isOnPan.Add(nextFood);
             // Expand size of collider to detect new ingredients 
             orderCollider.size = new Vector3(orderCollider.size.x, orderCollider.size.y + 0.4f, orderCollider.size.z);
@@ -82,7 +105,21 @@ public class OrderDetection : MonoBehaviour
     // If colliders leave, remove it from the isOnPan list
     void OnTriggerExit(Collider other)
     {
-        // If the list of triggers contains this collider, remove it
+        
+        string getFood = other.GetComponent<FoodItem>().foodName.ToString();
+        if(getFood == OrderManager.reversedCurrentOrder[3]){
+            OrderManager.ingredientFour.color = Color.white;
+            }
+            if(getFood == OrderManager.reversedCurrentOrder[2]){
+                    OrderManager.ingredientThree.color = Color.white;
+            }
+            if(getFood == OrderManager.reversedCurrentOrder[1]){
+                    OrderManager.ingredientTwo.color = Color.white;
+            }
+            if(getFood == OrderManager.reversedCurrentOrder[0]){
+                    OrderManager.ingredientOne.color = Color.white;
+            }
+           // If the list of triggers contains this collider, remove it
         if(triggerList.Contains(other))
         {
             triggerList.Remove(other);
@@ -113,9 +150,14 @@ public class OrderDetection : MonoBehaviour
 
     public void RemoveAllPanItems()
     {
+        //OrderManager.PrintOrder.color = Color.white;
         foreach(Collider c in triggerList)
             Destroy(c.gameObject);
         triggerList.Clear();
         isOnPan.Clear();
+        OrderManager.ingredientFour.color = Color.white;
+        OrderManager.ingredientThree.color = Color.white;
+        OrderManager.ingredientTwo.color = Color.white;
+        OrderManager.ingredientOne.color = Color.white;
     }
 }
