@@ -50,10 +50,10 @@ public class OrderManager : MonoBehaviour
         reversedCurrentOrder = new List<string>();
         difficulty = DifficultyStatic.difficulty;
         //PrintOrder = GameObject.Find("PrintOrder").GetComponent<Text>();
-        ingredientOne = GameObject.Find("ingredientOne").GetComponent<Text>();
-        ingredientTwo = GameObject.Find("ingredientTwo").GetComponent<Text>();
-        ingredientThree = GameObject.Find("ingredientThree").GetComponent<Text>();
-        ingredientFour = GameObject.Find("ingredientFour").GetComponent<Text>();
+        //ingredientOne = GameObject.Find("ingredientOne").GetComponent<Text>();
+        //ingredientTwo = GameObject.Find("ingredientTwo").GetComponent<Text>();
+        //ingredientThree = GameObject.Find("ingredientThree").GetComponent<Text>();
+        //ingredientFour = GameObject.Find("ingredientFour").GetComponent<Text>();
         Physics.gravity = new Vector3(0.0f, DifficultyStatic.fallingSpeed, 0.0f);
         lastTimeOrderChecked = Time.time + 3.0f;
     } 
@@ -65,6 +65,7 @@ public class OrderManager : MonoBehaviour
         {
             InitializeOrder();
         }
+        /*
         for (int i = 0; i <= 3; ++i){
             if (i == 0 && reversedCurrentOrder[i] != null){
                 ingredientOne.GetComponent<Text>().text = reversedCurrentOrder[i];
@@ -83,6 +84,7 @@ public class OrderManager : MonoBehaviour
             }
     
         }
+        */
 
 
         // Order comparison

@@ -68,6 +68,7 @@ public class OrderDetection : MonoBehaviour
             // If the item added matches, play sound w/ particle
             if(nextFood == om.GetNextExpectedItem())
             {
+                /*
                 if(om.GetNextExpectedItem() == OrderManager.reversedCurrentOrder[3])
                 {
                     OrderManager.ingredientFour.color = Color.green;
@@ -84,6 +85,7 @@ public class OrderDetection : MonoBehaviour
                 {
                     OrderManager.ingredientOne.color = Color.green;
                 }
+                */
                 GameObject p = Instantiate(goodNextItemParticle, other.transform.position, Quaternion.identity);
                 p.GetComponent<AudioSource>().Play();
                 Destroy(p, 2.0f);
@@ -107,6 +109,7 @@ public class OrderDetection : MonoBehaviour
     {
         
         string getFood = other.GetComponent<FoodItem>().foodName.ToString();
+        /*
         if(getFood == OrderManager.reversedCurrentOrder[3]){
             OrderManager.ingredientFour.color = Color.white;
             }
@@ -119,6 +122,7 @@ public class OrderDetection : MonoBehaviour
             if(getFood == OrderManager.reversedCurrentOrder[0]){
                     OrderManager.ingredientOne.color = Color.white;
             }
+            */
            // If the list of triggers contains this collider, remove it
         if(triggerList.Contains(other))
         {
@@ -155,9 +159,11 @@ public class OrderDetection : MonoBehaviour
             Destroy(c.gameObject);
         triggerList.Clear();
         isOnPan.Clear();
+        /*
         OrderManager.ingredientFour.color = Color.white;
         OrderManager.ingredientThree.color = Color.white;
         OrderManager.ingredientTwo.color = Color.white;
         OrderManager.ingredientOne.color = Color.white;
+        */
     }
 }
