@@ -98,7 +98,7 @@ MonoBehaviour:
   foodPhysics: {fileID: 13400000, guid: 3463fc919e61d014d916e0e85bad2349, type: 2}
   foodMaterial: {fileID: 2100000, guid: b6b1bcec55690354ca9c616c568dc808, type: 2}
   isGarbage: 0
-  trackpadMode: 0
+  trackpadMode: 1
 --- !u!65 &6057715238134531898
 BoxCollider:
   m_ObjectHideFlags: 0
