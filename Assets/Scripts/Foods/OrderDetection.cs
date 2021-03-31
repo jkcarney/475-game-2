@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class OrderDetection : MonoBehaviour
 {
@@ -132,7 +133,11 @@ public class OrderDetection : MonoBehaviour
             {
                 foodGone = "GARBAGE";
             }
+
+            isOnPan.Reverse();
             isOnPan.Remove(foodGone);
+            isOnPan.Reverse();
+            
             // Shrink size of collider appropriately
             orderCollider.size = new Vector3(orderCollider.size.x, orderCollider.size.y - 0.4f, orderCollider.size.z);
             orderCollider.center = new Vector3(orderCollider.center.x, orderCollider.center.y + 0.2f, orderCollider.center.z);
