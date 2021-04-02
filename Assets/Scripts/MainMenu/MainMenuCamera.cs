@@ -367,6 +367,6 @@ public class MainMenuCamera : MonoBehaviour
 
     public void SetQuality(int quality)
     {
-        QualitySettings.SetQualityLevel(quality);
+        QualitySettings.SetQualityLevel(quality, true);
     }
 }
