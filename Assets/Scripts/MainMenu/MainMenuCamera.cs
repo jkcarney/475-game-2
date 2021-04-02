@@ -15,6 +15,7 @@ public class MainMenuCamera : MonoBehaviour
     public GameObject playFabErrorObj;
     public GameObject menuObj;
     public GameObject promptObj;
+    public GameObject optionsObj;
     public GameObject playfabManagerObject;
 
     public GameObject musicManager;
@@ -29,6 +30,7 @@ public class MainMenuCamera : MonoBehaviour
 
     private Vector3 target_rotation;
     private bool isFacingSky = true;
+    private bool isFacingUp = false;
     
     // Start current level index at -1 for the main menu
     private int currentLevelIndex = -1;
@@ -60,8 +62,14 @@ public class MainMenuCamera : MonoBehaviour
 
     void Update()
     {
-        // Rotate towards the desired rotation which gets updated in the Rotate function
-        transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, target_rotation, Time.deltaTime * rotationSpeed);
+        // Rotate towards the desired rotation which gets updated in the Rotate functions
+        //transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, target_rotation, Time.deltaTime * rotationSpeed);
+
+        transform.eulerAngles = new Vector3(
+            Mathf.LerpAngle(transform.eulerAngles.x, target_rotation.x, rotationSpeed * Time.deltaTime),
+            Mathf.LerpAngle(transform.eulerAngles.y, target_rotation.y, rotationSpeed * Time.deltaTime),
+            Mathf.LerpAngle(transform.eulerAngles.z, target_rotation.z, rotationSpeed * Time.deltaTime)
+        );
     }
 
     public void MainMenuValidateLogin()
@@ -115,6 +123,20 @@ public class MainMenuCamera : MonoBehaviour
         {
             target_rotation = new Vector3(0.0f, 0.0f, 0.0f);
             isFacingSky = true;
+        }
+    }
+
+    public void RotateUpAndBack()
+    {
+        if(isFacingUp)
+        {
+            target_rotation = new Vector3(0.0f, 0.0f, 0.0f);
+            isFacingUp = false;
+        }
+        else
+        {
+            target_rotation = new Vector3(-90f, 0.0f, 0.0f);
+            isFacingUp = true;
         }
     }
 
@@ -309,6 +331,16 @@ public class MainMenuCamera : MonoBehaviour
         promptObj.SetActive(true);
     }
 
+    public void EnableOptions()
+    {
+        optionsObj.SetActive(true);
+    }
+
+    public void DisableOptions()
+    {
+        optionsObj.SetActive(false);
+    }
+
     public void QuitGame()
     {
         Application.Quit();
@@ -331,5 +363,10 @@ public class MainMenuCamera : MonoBehaviour
     public void TrackpadMode(bool check)
     {
         DifficultyStatic.trackpadMode = check;
+    }
+
+    public void SetQuality(int quality)
+    {
+        QualitySettings.SetQualityLevel(quality);
     }
 }
