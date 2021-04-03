@@ -15,7 +15,6 @@ public class OrderManager : MonoBehaviour
     public static Text ingredientThree;
     public static Text ingredientFour;
     public static List<string> reversedCurrentOrder;
-
     private int difficulty;
 
     private int ingredientCount;
@@ -27,6 +26,8 @@ public class OrderManager : MonoBehaviour
     private ScoreManager scoreManager;
 
     private GhostVisualOrder ghostOrder;
+
+    private displayVisualOrder displayOrder;
 
     private List<string> currentOrder;
     //private List<string> reversedCurrentOrder;
@@ -43,6 +44,7 @@ public class OrderManager : MonoBehaviour
         orderDetector = GameObject.Find("OrderDetector").GetComponent<OrderDetection>();
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
         ghostOrder = GameObject.Find("GhostOrder").GetComponent<GhostVisualOrder>();
+        displayOrder = GameObject.Find("displayOrder").GetComponent<displayVisualOrder>();
         ingredients = Enum.GetNames(typeof(FoodItem.Food));
         ingredientCount = ingredients.Length;
         currentOrderExists = false;
@@ -50,10 +52,10 @@ public class OrderManager : MonoBehaviour
         reversedCurrentOrder = new List<string>();
         difficulty = DifficultyStatic.difficulty;
         //PrintOrder = GameObject.Find("PrintOrder").GetComponent<Text>();
-        //ingredientOne = GameObject.Find("ingredientOne").GetComponent<Text>();
-        //ingredientTwo = GameObject.Find("ingredientTwo").GetComponent<Text>();
-        //ingredientThree = GameObject.Find("ingredientThree").GetComponent<Text>();
-        //ingredientFour = GameObject.Find("ingredientFour").GetComponent<Text>();
+        ingredientOne = GameObject.Find("ingredientOne").GetComponent<Text>();
+        ingredientTwo = GameObject.Find("ingredientTwo").GetComponent<Text>();
+        ingredientThree = GameObject.Find("ingredientThree").GetComponent<Text>();
+        ingredientFour = GameObject.Find("ingredientFour").GetComponent<Text>();
         Physics.gravity = new Vector3(0.0f, DifficultyStatic.fallingSpeed, 0.0f);
         lastTimeOrderChecked = Time.time + 3.0f;
     } 
@@ -65,7 +67,7 @@ public class OrderManager : MonoBehaviour
         {
             InitializeOrder();
         }
-        /*
+        
         for (int i = 0; i <= 3; ++i){
             if (i == 0 && reversedCurrentOrder[i] != null){
                 ingredientOne.GetComponent<Text>().text = reversedCurrentOrder[i];
@@ -84,7 +86,7 @@ public class OrderManager : MonoBehaviour
             }
     
         }
-        */
+        
 
 
         // Order comparison
@@ -104,8 +106,7 @@ public class OrderManager : MonoBehaviour
                 GameObject.Find("Main Camera").GetComponent<Tutorial>().ActivateIndex(4);
             }
             checkedInFirstOrder = true;
-        }
-    
+        }  
     }
 
     //print this to screen..all items are added to a list so print the list
@@ -131,6 +132,7 @@ public class OrderManager : MonoBehaviour
 
         //Tell ghost order to update
         ghostOrder.UpdateGhostFoods(GetCurrentOrder());
+        displayOrder.UpdateGhostFoods(GetCurrentOrder());
     }
 
     void LogCurrentOrder()
