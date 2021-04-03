@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayFabErrorText : MonoBehaviour
 {
-    private float lifetime = 2.0f;
+    private float lifetime = 5.0f;
     private float timer = 0.0f;
 
     void Update()
