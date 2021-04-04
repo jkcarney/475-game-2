@@ -7,7 +7,9 @@ using PlayFab.ClientModels;
 
 public class ScoreboardUpdater : MonoBehaviour
 {
+    // The row prefab that contains two text fields: one for the name and one for the score
     public GameObject rowPrefab;
+    // The transform/object that will act as the parent to all the rows. It's also responsible for spacing them out nicely.
     public Transform rowParent;
     public GameObject loadingIcon;
 
@@ -15,8 +17,11 @@ public class ScoreboardUpdater : MonoBehaviour
     {
         foreach (var item in result.Leaderboard)
         {
+            // Create a new row and set it's parent to the row parent object.
             GameObject newRow = Instantiate(rowPrefab, rowParent);
+            // Get all the text fields in the new row 
             Text[] texts = newRow.GetComponentsInChildren<Text>();
+            // Set them to be the values from the leaderboard
             texts[0].text = item.DisplayName;
             texts[1].text = item.StatValue.ToString();
         }

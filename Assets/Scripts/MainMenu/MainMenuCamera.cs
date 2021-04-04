@@ -26,6 +26,8 @@ public class MainMenuCamera : MonoBehaviour
 
     public float gravityPower;
 
+    public InputField usernameIn;
+
     private AudioSource buttonPress;
 
     private Vector3 target_rotation;
@@ -104,8 +106,9 @@ public class MainMenuCamera : MonoBehaviour
         }
     }
 
-    public void WriteUsernameToFile(string username)
+    public void WriteUsernameToFile()
     {
+        string username = usernameIn.text;
         if(!File.Exists(path))
         {
             File.WriteAllText(path, username);
