@@ -78,7 +78,11 @@ public class OrderDetection : MonoBehaviour
                 {
                     OrderManager.ingredientThree.color = Color.green;
                 }
+<<<<<<< Updated upstream
                  else if(om.GetNextExpectedItem() == OrderManager.reversedCurrentOrder[1])
+=======
+                else if(om.GetNextExpectedItem() == OrderManager.reversedCurrentOrder[1])
+>>>>>>> Stashed changes
                 {
                     OrderManager.ingredientTwo.color = Color.green;
                 }
@@ -117,6 +121,7 @@ public class OrderDetection : MonoBehaviour
     {
         
         string getFood = other.GetComponent<FoodItem>().foodName.ToString();
+<<<<<<< Updated upstream
         
             if(getFood == OrderManager.reversedCurrentOrder[3]){
                 OrderManager.ingredientFour.color = Color.white;
@@ -131,6 +136,20 @@ public class OrderDetection : MonoBehaviour
                     OrderManager.ingredientOne.color = Color.white;
             }
             
+=======
+        if(getFood == OrderManager.reversedCurrentOrder[3]){
+            OrderManager.ingredientFour.color = Color.white;
+        }
+        else if(getFood == OrderManager.reversedCurrentOrder[2]){
+            OrderManager.ingredientThree.color = Color.white;
+        }
+        else if(getFood == OrderManager.reversedCurrentOrder[1]){
+            OrderManager.ingredientTwo.color = Color.white;
+        }
+        else if(getFood == OrderManager.reversedCurrentOrder[0]){
+            OrderManager.ingredientOne.color = Color.white;
+        }
+>>>>>>> Stashed changes
            // If the list of triggers contains this collider, remove it
         if(triggerList.Contains(other))
         {
