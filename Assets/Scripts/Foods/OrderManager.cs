@@ -44,7 +44,7 @@ public class OrderManager : MonoBehaviour
         orderDetector = GameObject.Find("OrderDetector").GetComponent<OrderDetection>();
         scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
         ghostOrder = GameObject.Find("GhostOrder").GetComponent<GhostVisualOrder>();
-        displayOrder = GameObject.Find("displayOrder").GetComponent<displayVisualOrder>();
+        displayOrder = GameObject.Find("PrintOrder").GetComponent<displayVisualOrder>();
         ingredients = Enum.GetNames(typeof(FoodItem.Food));
         ingredientCount = ingredients.Length;
         currentOrderExists = false;
@@ -52,10 +52,12 @@ public class OrderManager : MonoBehaviour
         reversedCurrentOrder = new List<string>();
         difficulty = DifficultyStatic.difficulty;
         //PrintOrder = GameObject.Find("PrintOrder").GetComponent<Text>();
+        /*
         ingredientOne = GameObject.Find("ingredientOne").GetComponent<Text>();
         ingredientTwo = GameObject.Find("ingredientTwo").GetComponent<Text>();
         ingredientThree = GameObject.Find("ingredientThree").GetComponent<Text>();
         ingredientFour = GameObject.Find("ingredientFour").GetComponent<Text>();
+        */
         Physics.gravity = new Vector3(0.0f, DifficultyStatic.fallingSpeed, 0.0f);
         lastTimeOrderChecked = Time.time + 3.0f;
     } 
@@ -67,6 +69,8 @@ public class OrderManager : MonoBehaviour
         {
             InitializeOrder();
         }
+
+        /*
         
         for (int i = 0; i <= 3; ++i){
             if (i == 0 && reversedCurrentOrder[i] != null){
@@ -87,7 +91,7 @@ public class OrderManager : MonoBehaviour
     
         }
         
-
+     */
 
         // Order comparison
         if((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && Time.time > lastTimeOrderChecked + 1.2f)
@@ -132,7 +136,7 @@ public class OrderManager : MonoBehaviour
 
         //Tell ghost order to update
         ghostOrder.UpdateGhostFoods(GetCurrentOrder());
-        displayOrder.UpdateGhostFoods(GetCurrentOrder());
+        displayOrder.UpdateVisualFoods(reversedCurrentOrder);
     }
 
     void LogCurrentOrder()

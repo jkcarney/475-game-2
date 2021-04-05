@@ -2,57 +2,79 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class displayVisualOrder : MonoBehaviour
 {
-    public GameObject[] foods;
-    public GameObject ghost;
-    public int speed;
-    void Start()
-    {
-        
-    }
+
+    public Transform rowParent;
+    public GameObject rowPrefab;
+
+    public Sprite topBunPicture;
+    public Sprite bottomBunPicture;
+    public Sprite pattyPicture;
+    public Sprite cheesePicture;
+    public Sprite lettucePicture;
+
+    private float topBunDesiredHeight = 100;
+    private float bottomBunDesiredHeight = 55;
+    private float cheeseLettuceDesiredHeight = 40;
+    private float pattyDesiredHeight = 48;
    
-    public void UpdateGhostFoods(List<string> order)
+    public void UpdateVisualFoods(List<string> order)
     {
-        foreach(Transform child in transform)
+        foreach(Transform child in rowParent)
         {
             Destroy(child.gameObject);
         }
 
-        float yOffset = 0.0f;
-
-        foreach(string s in order)
+        foreach(string food in order)
         {
-            Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y + yOffset, transform.position.z);
-            ghost = Instantiate(foods[FoodIndexOf(s)], spawnPosition, Quaternion.identity);
-            yOffset += ghost.transform.localScale.y * 1.8f;
-            ghost.transform.parent = transform;
+            GameObject newFoodRow = Instantiate(rowPrefab, rowParent);
+            Text foodText = newFoodRow.GetComponent<Text>();
+            Image foodImage = newFoodRow.transform.Find("FoodImage").GetComponent<Image>();
+
+            foodText.text = food;
+            foodImage.sprite = DetermineFoodSprite(food);
+            foodImage.gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(foodImage.gameObject.GetComponent<RectTransform>().rect.width, DetermineOptimalSpriteHeight(food));
         }
     }
-    
-    void Update (){
-        ghost.transform.Rotate(0, speed, 0);
-    }
 
-
-    public int FoodIndexOf(string food)
+    public Sprite DetermineFoodSprite(string food)
     {
         switch (food)
         {
             case "BottomBun":
-                return 0;
+                return bottomBunPicture;
             case "TopBun":
-                return 1;
+                return topBunPicture;
             case "Cheese":
-                return 2;
+                return cheesePicture;
             case "Lettuce":
-                return 3;
+                return lettucePicture;
             case "Patty":
-                return 4;
+                return pattyPicture;
             default:
-                return 0;
-        }
-            
+                return bottomBunPicture;
+        }   
+    }
+
+    public float DetermineOptimalSpriteHeight(string food)
+    {
+        switch (food)
+        {
+            case "BottomBun":
+                return bottomBunDesiredHeight;
+            case "TopBun":
+                return topBunDesiredHeight;
+            case "Cheese":
+                return cheeseLettuceDesiredHeight;
+            case "Lettuce":
+                return cheeseLettuceDesiredHeight;
+            case "Patty":
+                return pattyDesiredHeight;
+            default:
+                return pattyDesiredHeight;
+        }  
     }
 }

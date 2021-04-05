@@ -44,3 +44,5 @@ Assets/Models/Sardine/Animations.meta
 Assets/Models/Sardine/Animator.meta
 Assets/Models/Sardine/Audio.meta
 Assets/Models/Sardine/Prefabs/Ver1.2.1.meta
+Assets/PlayFabEditorExtensions/Editor/Resources/PlayFabEditorPrefsSO.asset
+Assets/Scripts/PlayfabLibrary/PlayFabEditorExtensions/Editor/Resources/PlayFabUnitySdk.unitypackage.meta
