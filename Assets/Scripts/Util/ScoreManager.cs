@@ -37,11 +37,13 @@ public class ScoreManager : MonoBehaviour
     // "badItems" is defined as the amount of bad food items in the given burger
     public void AddScore(int correctItems, int badItems)
     {
+        // If there are no bad items, then increment the multiplier by the increment amount and display it
         if(badItems == 0)
         {
             multiplier += multiplierIncrement;
             DisplayMultiplier(multiplier);
         }
+        // There was a bad item, which means the multiplier must be reset
         else
         {
             multiplier = 1.0f;
@@ -50,6 +52,7 @@ public class ScoreManager : MonoBehaviour
         int calculatedScore = 0;
         calculatedScore = Mathf.CeilToInt((((correctItems * goodItemsFactor) + (correctItems + badItems)) / (1 + (badItems/5))) * DifficultyStatic.difficulty * multiplier);
 
+        // If there was no correct items, then just make it zero.
         if(correctItems == 0)
         {
             calculatedScore = 0;
@@ -57,6 +60,8 @@ public class ScoreManager : MonoBehaviour
 
         currentScore += calculatedScore;
 
+        // In order to add time, the player must have a certain number of ingredients on the pan
+        // So for difficulty=2, the player needs more than 1, difficulty=3, player needs more than 2, etc...
         if(correctItems > DifficultyStatic.difficulty - 1)
         {
             timer.AddTime(Mathf.Clamp((calculatedScore * scoreToTimerRatio), 0.0f, 10.0f));
