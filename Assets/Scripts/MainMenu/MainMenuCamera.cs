@@ -48,6 +48,7 @@ public class MainMenuCamera : MonoBehaviour
         buttonPress = GetComponent<AudioSource>();
         path = Application.dataPath + "/PleaseDontModifyThisPleaseDontMakeMeWriteAnEncryptionAlgorithm.txt";
         Physics.gravity = new Vector3(0.0f, gravityPower, 0.0f);
+        Time.timeScale = 1.0f;
         playfabManager = playfabManagerObject.GetComponent<PlayFabManager>();
         DontDestroyOnLoad(musicManager);
         if(!musicIsPlaying)
