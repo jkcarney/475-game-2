@@ -61,8 +61,9 @@ public class Spawning : MonoBehaviour
             Spawn(ingredients[randomNumber]);
 
             //roll chance for spawning food item that you need
-            if (randomNumber2 < graceChance)
-                Spawn(ingredients[Array.IndexOf(ingredientNames, orderManager.GetNextExpectedItem())]);
+            int index = Array.IndexOf(ingredientNames, orderManager.GetNextExpectedItem());
+            if (randomNumber2 < graceChance && index > -1)
+                Spawn(ingredients[index]);
 
             //roll chance for spawning bad item
             if (randomNumber2 < DifficultyStatic.trashChance)
