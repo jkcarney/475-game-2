@@ -6,8 +6,11 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     public static int currentScore;
-    [Range(1, 100)]
+    [Range(50, 200)]
     public int goodItemsFactor;
+    public float multiplierIncrement = 0.2f;
+    [Range(0.001f, 0.01f)]
+    public float scoreToTimerRatio = 0.005f;
     
     public GameObject textPopup;
     public GameObject smallTextPopup;
@@ -16,6 +19,8 @@ public class ScoreManager : MonoBehaviour
     public AudioClip goodScore;
     public AudioClip greatScore;
     public AudioClip amazingScore;
+
+    private float multiplier = 1.0f;
 
     private countDown timer;
     
@@ -32,19 +37,34 @@ public class ScoreManager : MonoBehaviour
     // "badItems" is defined as the amount of bad food items in the given burger
     public void AddScore(int correctItems, int badItems)
     {
+        if(badItems == 0)
+        {
+            multiplier += multiplierIncrement;
+            DisplayMultiplier(multiplier);
+        }
+        else
+        {
+            multiplier = 1.0f;
+        }
+
         int calculatedScore = 0;
-        calculatedScore = (((correctItems * goodItemsFactor) + (correctItems + badItems)) / (1 + badItems)) * DifficultyStatic.difficulty; 
+        calculatedScore = Mathf.CeilToInt((((correctItems * goodItemsFactor) + (correctItems + badItems)) / (1 + (badItems/5))) * DifficultyStatic.difficulty * multiplier);
+
+        if(correctItems == 0)
+        {
+            calculatedScore = 0;
+        }
 
         currentScore += calculatedScore;
 
-        if(correctItems > 1)
+        if(correctItems > DifficultyStatic.difficulty - 1)
         {
-            timer.AddTime(Mathf.Clamp((calculatedScore * 0.01f), 0.0f, 10.0f));
-            DisplayAddedTime(Mathf.Clamp((calculatedScore * 0.01f), 0.0f, 10.0f));
+            timer.AddTime(Mathf.Clamp((calculatedScore * scoreToTimerRatio), 0.0f, 10.0f));
+            DisplayAddedTime(Mathf.Clamp((calculatedScore * scoreToTimerRatio), 0.0f, 10.0f));
         }
             
         
-        DisplayAddedScore(calculatedScore, correctItems, badItems);
+        DisplayAddedScore(calculatedScore, correctItems, badItems);  
         ScoreZero.GetComponent<Text>().text = currentScore + "";
     }
 
@@ -52,10 +72,20 @@ public class ScoreManager : MonoBehaviour
     {
         time = Mathf.Round(time);
         Vector3 spawnLocation = GameObject.Find("PlateHand").transform.position;
-        spawnLocation = new Vector3(spawnLocation.x, spawnLocation.y + 3f, spawnLocation.z);
+        spawnLocation = new Vector3(spawnLocation.x, spawnLocation.y + 3.1f, spawnLocation.z);
         GameObject text = Instantiate(smallTextPopup, spawnLocation, Quaternion.identity);
         TextMesh mesh = text.GetComponent<TextMesh>();
         mesh.text = "+" + time.ToString() + "s";
+    }
+
+    private void DisplayMultiplier(float currentMultiplier)
+    {
+        Vector3 spawnLocation = GameObject.Find("PlateHand").transform.position;
+        spawnLocation = new Vector3(spawnLocation.x, spawnLocation.y + 1.5f, spawnLocation.z);
+        GameObject text = Instantiate(smallTextPopup, spawnLocation, Quaternion.identity);
+        TextMesh mesh = text.GetComponent<TextMesh>();
+        mesh.color = new Color(1f, 0.7f, 0.0f);
+        mesh.text = "x" + currentMultiplier.ToString();
     }
 
     private void DisplayAddedScore(int score, int good, int bad)
