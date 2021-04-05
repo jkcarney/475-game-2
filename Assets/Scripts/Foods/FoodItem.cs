@@ -10,8 +10,6 @@ public class FoodItem : MonoBehaviour
 
     public bool isGarbage = false;
 
-    public bool trackpadMode = false;
-
     private Rigidbody rigidbody;
 
     void Start()
@@ -24,15 +22,6 @@ public class FoodItem : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate()
-    {
-        if(rigidbody != null && rigidbody.velocity.magnitude > 30f && trackpadMode)
-        {
-            Debug.Log("EXCEEDED!");
-            rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, 30f);
-        }
-    }
-    
     public enum Food 
     {
         TopBun,
